@@ -1,11 +1,25 @@
-import React from 'react'
+import React from "react";
+import {
+  HeaderSection,
+  CardSection,
+  Options,
+  Movements,
+  Main,
+  Container,
+  Navegacion,
+} from "./auxiliars";
 
 const DashboardPage = () => {
-    return (
-        <div>
-            desde el dashboard
-        </div>
-    )
-}
+  return (
+    <Main>
+      <Container>
+        <HeaderSection />
+        <CardSection />
+        <Options />
+        <Movements />
+      </Container>
+    </Main>
+  );
+};
 
-export default DashboardPage
+export default DashboardPage;

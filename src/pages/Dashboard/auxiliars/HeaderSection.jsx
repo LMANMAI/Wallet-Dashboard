@@ -1,5 +1,5 @@
 import React from "react";
-import { HeaderContent, UserInfo, UserAvatar } from "./index";
+import { HeaderContent, UserInfo, UserAvatar } from "../../../assets";
 const HeaderSection = () => {
   return (
     <HeaderContent>

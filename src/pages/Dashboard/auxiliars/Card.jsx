@@ -1,5 +1,5 @@
 import React from "react";
-import { CardWraper, MainCard, BgCard } from "./index";
+import { CardWraper, MainCard, BgCard } from "../../../assets";
 const Card = () => {
   return (
     <CardWraper>

@@ -6,8 +6,7 @@ import {
   Movements,
   Main,
   Container,
-  Navegacion,
-} from "./auxiliars";
+} from "../../assets";
 
 const DashboardPage = () => {
   return (

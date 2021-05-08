@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuContainer, MenuItem, ImgContainer } from "./";
+import { MenuContainer, MenuItem } from "../../../assets";
 import {
   CgArrowsExchangeAltV,
   CgMathPercent,
@@ -10,34 +10,24 @@ const Options = () => {
   return (
     <MenuContainer>
       <MenuItem>
-        <ImgContainer>
-          <CgArrowsExchangeAltV />
-        </ImgContainer>
+        <CgArrowsExchangeAltV />
         Transfer
       </MenuItem>
 
       <MenuItem>
-        <ImgContainer>
-          <CgMathPercent />
-        </ImgContainer>
+        <CgMathPercent />
         voucher
       </MenuItem>
       <MenuItem>
-        <ImgContainer>
-          <IoIosPaper />
-        </ImgContainer>
+        <IoIosPaper />
         Bill
       </MenuItem>
       <MenuItem>
-        <ImgContainer>
-          <IoIosPeople />
-        </ImgContainer>
+        <IoIosPeople />
         Send
       </MenuItem>
       <MenuItem>
-        <ImgContainer>
-          <CgShoppingCart />
-        </ImgContainer>
+        <CgShoppingCart />
         Shopping
       </MenuItem>
     </MenuContainer>

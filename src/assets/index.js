@@ -31,9 +31,13 @@ export const Formulario = styled.form`
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
     rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  h2 {
+    color: ${AzulO};
+    font-size: 2rem;
+  }
   @media (min-width: 768px) {
     width: 40vw;
-    height: 95%;
+    height: fit-content;
     max-width: 500px;
     border-radius: 35px;
   }
@@ -48,7 +52,7 @@ export const InputsContainer = styled.div`
   justify-content: flex-start;
 `;
 export const InputContent = styled.div`
-  width: 80%;
+  width: 100%;
   height: 50px;
   background-color: ${GrisO};
   border-radius: 25px;
@@ -56,9 +60,15 @@ export const InputContent = styled.div`
   display: grid;
   grid-template-columns: 50px 1fr;
   place-items: center;
+  transition: all 300ms ease-in-out;
   svg {
     font-size: 30px;
     padding-left: 5px;
+  }
+  &:focus-within {
+    svg {
+      color: ${Naranja};
+    }
   }
 `;
 export const Input = styled.input`
@@ -68,6 +78,47 @@ export const Input = styled.input`
   border-radius: 0 25px 25px 0;
   border: none;
   outline: none;
+`;
+export const ButtonContainer = styled.div`
+  width: 100%;
+  margin: 15px 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  a {
+    color: inherit;
+  }
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+export const Button = styled.button`
+  padding: 15px;
+  min-width: 90%;
+  margin: 5px;
+  border: none;
+  border-radius: 35px;
+  cursor: pointer;
+  @media (min-width: 768px) {
+    min-width: 80px;
+  }
+  &:first-child {
+    background-color: ${Naranja};
+    color: white;
+  }
+  &:last-child {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    svg {
+      font-size: 1rem;
+      margin-right: 5px;
+    }
+  }
 `;
 /**Dashboard Page*/
 export const Main = styled.main`

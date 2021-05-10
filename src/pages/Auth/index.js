@@ -11,42 +11,41 @@ import {
 import { RiLock2Fill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
-import { auth, provider } from "../../firebase";
 import { useDispatch, useSelector } from "react-redux";
+import { auth, provider } from "../../firebase";
+import { selectUserEmail, setActiveUser } from "../../features/user/userSlice";
 import { useHistory } from "react-router-dom";
-import { selectUserEmail, setUserLoginDetails } from "../../features/userSlice";
 const LoginPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const userEmail = useSelector(selectUserEmail);
-
+  const handleSignInPopUp = () => {
+    auth.signInWithPopup(provider).then((result) => {
+      console.log(result);
+      dispatch(
+        setActiveUser({
+          username: result.user.displayName,
+          email: result.user.email,
+          userphoto: result.user.photoURL,
+        })
+      );
+    });
+  };
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        setUser(user);
+        dispatch(
+          setActiveUser({
+            username: user.displayName,
+            email: user.email,
+            userphoto: user.photoURL,
+          })
+        );
         history.push("/Dashboard");
       }
     });
+    console.log(userEmail);
   }, [userEmail]);
-  const handleAuth = () => {
-    auth
-      .signInWithPopup(provider)
-      .then((result) => {
-        setUser(result.user);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  };
-  const setUser = (user) => {
-    dispatch(
-      setUserLoginDetails({
-        name: user.displayName,
-        email: user.email,
-        photo: user.photoURL,
-      })
-    );
-  };
   return (
     <AuthContainer>
       <Formulario>
@@ -64,15 +63,13 @@ const LoginPage = () => {
           <ButtonContainer>
             <Button>Entrar</Button>
             <a>
-              <Button onClick={handleAuth} type="button">
+              <Button onClick={handleSignInPopUp} type="button">
                 <FcGoogle />
                 Continuar con Google
               </Button>
             </a>
           </ButtonContainer>
         </InputsContainer>
-
-        {/* boton para ingresar y de google*/}
       </Formulario>
     </AuthContainer>
   );

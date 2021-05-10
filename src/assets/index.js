@@ -156,7 +156,43 @@ export const UserAvatar = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 100%;
-  background-color: ${AzulC};
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+`;
+export const RightSectionUser = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+`;
+export const MenuButton = styled.button`
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  svg {
+    font-size: 18px;
+  }
+`;
+export const MenuWrapper = styled.div`
+  width: 150px;
+  height: fit-content;
+  background-color: ${GrisO};
+  position: absolute;
+  border-radius: 10px;
+  padding: 10px;
+  bottom: -80px;
+  z-index: 99;
+  right: -1px;
+  box-shadow: 0 10px 6px -6px #777;
+  li {
+    padding: 2px;
+    cursor: pointer;
+    &:hover {
+      background-color: ${GrisC};
+    }
+  }
 `;
 
 /**Seccion Main de las tarjetas */

@@ -1,20 +1,36 @@
-import React from "react";
-import { HeaderContent, UserInfo, UserAvatar } from "../../../assets";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUserName, selectUserPhoto } from "../../../features/userSlice";
+import React, { useEffect } from "react";
+import {
+  HeaderContent,
+  UserInfo,
+  UserAvatar,
+  RightSectionUser,
+  MenuButton,
+} from "../../../assets";
+import { AiFillCaretDown } from "react-icons/ai";
+import Menu from "./Menu";
+import {
+  selectUserName,
+  selectUserPhoto,
+} from "../../../features/user/userSlice";
+import { useSelector } from "react-redux";
 const HeaderSection = () => {
-  const username = useSelector(selectUserName);
-  const userimg = useSelector(selectUserPhoto);
-  console.log(username);
+  const userName = useSelector(selectUserName);
+  const photo = useSelector(selectUserPhoto);
   return (
     <HeaderContent>
       <UserInfo>
-        <p>Hi! {username}</p>
+        <p>Hi! {userName}</p>
         <span>Welcome Back</span>
       </UserInfo>
-      <UserAvatar>
-        <img src={userimg} alt="imagen de usuario" />
-      </UserAvatar>
+      <RightSectionUser>
+        <UserAvatar>
+          <img src={photo} alt="imagen de usuario" />
+        </UserAvatar>
+        <MenuButton>
+          <AiFillCaretDown />
+        </MenuButton>
+        <Menu />
+      </RightSectionUser>
     </HeaderContent>
   );
 };

@@ -19,9 +19,9 @@ const LoginPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const userEmail = useSelector(selectUserEmail);
+
   const handleSignInPopUp = () => {
     auth.signInWithPopup(provider).then((result) => {
-      console.log(result);
       dispatch(
         setActiveUser({
           username: result.user.displayName,
@@ -44,7 +44,6 @@ const LoginPage = () => {
         history.push("/Dashboard");
       }
     });
-    console.log(userEmail);
   }, [userEmail]);
   return (
     <AuthContainer>

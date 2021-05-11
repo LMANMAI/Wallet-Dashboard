@@ -182,15 +182,27 @@ export const MenuWrapper = styled.div`
   position: absolute;
   border-radius: 10px;
   padding: 10px;
-  bottom: -80px;
+  bottom: -110px;
   z-index: 99;
   right: -1px;
   box-shadow: 0 10px 6px -6px #777;
   li {
-    padding: 2px;
+    padding: 5px;
+    padding-left: 12px;
     cursor: pointer;
+    border-radius: 15px;
     &:hover {
       background-color: ${GrisC};
+    }
+    &:last-child {
+      &:before {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: ${GrisC};
+        margin-bottom: 2px;
+      }
     }
   }
 `;

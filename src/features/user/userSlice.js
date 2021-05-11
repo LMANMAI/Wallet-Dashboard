@@ -23,7 +23,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { setActiveUser, setUserLogOut } = userSlice.actions;
+export const { setActiveUser, setUserLogOut, setPopUp } = userSlice.actions;
 export const selectUserName = (state) => state.user.username;
 export const selectUserPhoto = (state) => state.user.userphoto;
 export const selectUserEmail = (state) => state.user.useremail;

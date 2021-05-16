@@ -4,6 +4,8 @@ const initialState = {
   username: null,
   userphoto: null,
   useremail: null,
+  menu: false,
+  formulario: false,
 };
 
 const userSlice = createSlice({
@@ -20,12 +22,24 @@ const userSlice = createSlice({
       state.userphoto = null;
       state.useremail = null;
     },
+    setMenuPosition: (state, action) => {
+      state.menu = action.payload;
+    },
+    setFormPosition: (state, action) => {
+      state.formulario = action.payload;
+    },
   },
 });
 
-export const { setActiveUser, setUserLogOut, setPopUp } = userSlice.actions;
+export const {
+  setActiveUser,
+  setUserLogOut,
+  setMenuPosition,
+  setFormPosition,
+} = userSlice.actions;
 export const selectUserName = (state) => state.user.username;
 export const selectUserPhoto = (state) => state.user.userphoto;
 export const selectUserEmail = (state) => state.user.useremail;
-
+export const selectMenuState = (state) => state.user.menu;
+export const selectFormState = (state) => state.user.formulario;
 export default userSlice.reducer;

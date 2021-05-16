@@ -1,20 +1,11 @@
 import React, { useEffect } from "react";
-import {
-  AuthContainer,
-  Formulario,
-  InputsContainer,
-  InputContent,
-  Input,
-  ButtonContainer,
-  Button,
-} from "../../assets";
-import { RiLock2Fill } from "react-icons/ri";
-import { MdEmail } from "react-icons/md";
-import { FcGoogle } from "react-icons/fc";
+import { AuthContainer, Formulario } from "../../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { auth, provider } from "../../firebase";
 import { selectUserEmail, setActiveUser } from "../../features/user/userSlice";
 import { useHistory } from "react-router-dom";
+import Login from "./auxiliars/Login";
+import Register from "./auxiliars/Register";
 const LoginPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -48,27 +39,8 @@ const LoginPage = () => {
   return (
     <AuthContainer>
       <Formulario>
-        <h2>Hi there, Welcome!</h2>
-        <p>Plase fill the required data bellow so we can proceed your acount</p>
-        <InputsContainer>
-          <InputContent>
-            <MdEmail />
-            <Input type="text" placeholder="Email" />
-          </InputContent>
-          <InputContent>
-            <RiLock2Fill />
-            <Input type="password" placeholder="Password" />
-          </InputContent>
-          <ButtonContainer>
-            <Button>Entrar</Button>
-            <a>
-              <Button onClick={handleSignInPopUp} type="button">
-                <FcGoogle />
-                Continuar con Google
-              </Button>
-            </a>
-          </ButtonContainer>
-        </InputsContainer>
+        <Login handleSignInPopUp={handleSignInPopUp} />
+        <Register handleSignInPopUp={handleSignInPopUp} />
       </Formulario>
     </AuthContainer>
   );

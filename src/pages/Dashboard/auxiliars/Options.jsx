@@ -4,11 +4,23 @@ import {
   CgArrowsExchangeAltV,
   CgMathPercent,
   CgShoppingCart,
+  CgClose,
 } from "react-icons/cg";
 import { IoIosPaper, IoIosPeople } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setMenuPosition,
+  selectMenuState,
+} from "../../../features/user/userSlice";
 const Options = () => {
+  const dispatch = useDispatch(setMenuPosition);
+  const movestate = useSelector(selectMenuState);
+  const handleMenuClose = () => {
+    dispatch(setMenuPosition(false));
+    console.log(movestate);
+  };
   return (
-    <MenuContainer>
+    <MenuContainer move={movestate}>
       <MenuItem>
         <CgArrowsExchangeAltV />
         Transfer
@@ -30,6 +42,7 @@ const Options = () => {
         <CgShoppingCart />
         Shopping
       </MenuItem>
+      <CgClose onClick={() => handleMenuClose()} />
     </MenuContainer>
   );
 };

@@ -15,7 +15,7 @@ const DashboardPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const userEmail = useSelector(selectUserEmail);
-  console.log(userEmail);
+  //console.log(userEmail);
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -30,12 +30,13 @@ const DashboardPage = () => {
       }
     });
   }, [userEmail]);
+
   return (
     <Main>
       <Container>
         <HeaderSection />
-        <CardSection />
         <Options />
+        <CardSection />
         <Movements />
       </Container>
     </Main>

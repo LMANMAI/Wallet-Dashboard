@@ -48,7 +48,7 @@ export const LoginContainer = styled.div`
   width: 100%;
   transition: all 400ms ease-in-out;
   transform: ${(props) =>
-    props.formulariomove ? "translateX(-5px)" : "translateX(-100vw)"};
+    props.formulariomove ? "translateX(-5px)" : "translateX(-110vw)"};
 `;
 export const SignContainer = styled.div`
   transition: all 400ms ease-in-out;
@@ -56,7 +56,7 @@ export const SignContainer = styled.div`
   position: absolute;
   top: 100px;
   transform: ${(props) =>
-    props.formulariomove ? "translateX(-100vw)" : "translateX(-10px)"};
+    props.formulariomove ? "translateX(-110vw)" : "translateX(-10px)"};
 `;
 
 export const InputsContainer = styled.div`

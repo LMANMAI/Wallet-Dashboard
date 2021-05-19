@@ -1,20 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MenuWrapper } from "../../../assets";
-import { setUserLogOut } from "../../../features/user/userSlice";
-// import { auth } from "../../../firebase/firebase";
+import { FirebaseContext } from "../../../firebase";
 import { useHistory } from "react-router-dom";
 const Menu = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { firebase } = useContext(FirebaseContext);
   const handleSignOut = () => {
-    //   auth
-    //     .signOut()
-    //     .then(() => {
-    //       dispatch(setUserLogOut());
-    //       history.push("/");
-    //     })
-    //     .catch((err) => alert(err.message));
+    firebase.logout();
+    history.push("/");
   };
   return (
     <MenuWrapper>

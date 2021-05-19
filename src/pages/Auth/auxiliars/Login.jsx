@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   InputsContainer,
   InputContent,
@@ -16,13 +16,35 @@ import {
   setFormPosition,
 } from "../../../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import firebase from "../../../firebase";
+import { useHistory } from "react-router-dom";
 const Login = ({ handleSignInPopUp }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const handleMenu = (e) => {
     e.preventDefault();
     dispatch(setFormPosition(false));
-    console.log("desde el handle menu del login");
   };
+  const [userlogin, setUserLogin] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = userlogin;
+  const handleChange = (e) => {
+    setUserLogin({
+      ...userlogin,
+      [e.target.name]: e.target.value,
+    });
+  };
+  async function loginUSer(e) {
+    e.preventDefault();
+    try {
+      await firebase.login(email, password);
+      history.push("/Dashboard");
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
   const formulariomove = useSelector(selectFormState);
 
   return (
@@ -32,21 +54,33 @@ const Login = ({ handleSignInPopUp }) => {
       <InputsContainer>
         <InputContent>
           <MdEmail />
-          <Input type="text" placeholder="Email" />
+          <Input
+            type="text"
+            placeholder="Email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
         </InputContent>
 
         <InputContent>
           <RiLock2Fill />
-          <Input type="password" placeholder="Password" />
+          <Input
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
         </InputContent>
         <MessageContainer>
           Not a member?
           <button onClick={(e) => handleMenu(e)}>Register now </button>
         </MessageContainer>
         <ButtonContainer>
-          <Button>Entrar</Button>
+          <Button onClick={(e) => loginUSer(e)}>Entrar</Button>
           <a>
-            <Button onClick={handleSignInPopUp} type="button">
+            <Button onClick={() => handleSignInPopUp()} type="button">
               <FcGoogle />
               Continuar con Google
             </Button>

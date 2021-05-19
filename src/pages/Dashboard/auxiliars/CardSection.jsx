@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { CardConteiner, CardSlider } from "../../../assets";
 import Card from "./Card";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styled from "styled-components";
 
 const CardSection = () => {
   let settings = {

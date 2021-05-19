@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   InputsContainer,
   InputContent,
@@ -16,13 +16,37 @@ import {
   setFormPosition,
 } from "../../../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import firebase from "../../../firebase";
+import { useHistory } from "react-router-dom";
 const Register = ({ handleSignInPopUp }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const [newuser, setNewUSer] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const handleMenu = (e) => {
     e.preventDefault();
     dispatch(setFormPosition(true));
-    console.log("desde el registro false");
   };
+  const { name, email, password } = newuser;
+  const handleChange = (e) => {
+    setNewUSer({
+      ...newuser,
+      [e.target.name]: e.target.value,
+    });
+  };
+  async function handleRegister(e) {
+    e.preventDefault();
+    try {
+      await firebase.register(name, email, password);
+      history.push("/Dashboard");
+    } catch (error) {
+      //guardo el posible error de validacion para mostrarlo por pantalla
+      console.error(error.message);
+    }
+  }
   const formulariomove = useSelector(selectFormState);
   return (
     <SignContainer formulariomove={formulariomove}>
@@ -34,22 +58,40 @@ const Register = ({ handleSignInPopUp }) => {
       <InputsContainer>
         <InputContent>
           <RiUserFill />
-          <Input type="text" placeholder="Name" />
+          <Input
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={name}
+            onChange={handleChange}
+          />
         </InputContent>
         <InputContent>
           <MdEmail />
-          <Input type="text" placeholder="Email" />
+          <Input
+            type="text"
+            placeholder="Email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
         </InputContent>
         <InputContent>
           <RiLock2Fill />
-          <Input type="password" placeholder="Password" />
+          <Input
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
         </InputContent>
         <MessageContainer>
           Already have acount?
           <button onClick={(e) => handleMenu(e)}>Login now </button>
         </MessageContainer>
         <ButtonContainer>
-          <Button>Entrar</Button>
+          <Button onClick={(e) => handleRegister(e)}>Registrar</Button>
           <a>
             <Button onClick={handleSignInPopUp} type="button">
               <FcGoogle />

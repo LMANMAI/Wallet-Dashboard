@@ -2,12 +2,14 @@ import React from "react";
 import Routes from "./routes";
 import "./assets/reset.css";
 import firebase, { FirebaseContext } from "./firebase";
+import userAuth from "./hooks/useAuth";
 function App() {
-  console.log("desde el app ahora con firebase");
+  const user = userAuth();
   return (
     <FirebaseContext.Provider
       value={{
         firebase,
+        user,
       }}
     >
       <Routes />

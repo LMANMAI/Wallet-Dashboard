@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   HeaderContent,
   UserInfo,
@@ -10,16 +10,13 @@ import {
 import { AiFillCaretDown } from "react-icons/ai";
 import { TiThMenu } from "react-icons/ti";
 import Menu from "./Menu";
-import {
-  selectUserName,
-  selectUserPhoto,
-  setMenuPosition,
-} from "../../../features/user/userSlice";
+import { setMenuPosition } from "../../../features/user/userSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { FirebaseContext } from "../../../firebase";
 const HeaderSection = () => {
   const [menu, setMenu] = useState(false);
-  const userName = useSelector(selectUserName);
-  const photo = useSelector(selectUserPhoto);
+  const { user, firebase } = useContext(FirebaseContext);
+  console.log(user);
   const dispatch = useDispatch();
   const handlePopUp = () => {
     setMenu(!menu);
@@ -29,23 +26,27 @@ const HeaderSection = () => {
   };
   return (
     <HeaderContent>
-      <LeftSectionUser>
-        <TiThMenu onClick={() => handleMenu()} />
-        <UserInfo>
-          <p>Hi! {userName}</p>
-          <span>Welcome Back</span>
-        </UserInfo>
-      </LeftSectionUser>
+      {user ? (
+        <>
+          <LeftSectionUser>
+            <TiThMenu onClick={() => handleMenu()} />
+            <UserInfo>
+              <p>Hi! {user.displayName}</p>
+              <span>Welcome Back</span>
+            </UserInfo>
+          </LeftSectionUser>
 
-      <RightSectionUser>
-        <UserAvatar>
-          <img src={photo} alt="imagen de usuario" />
-        </UserAvatar>
-        <MenuButton onClick={handlePopUp}>
-          <AiFillCaretDown />
-        </MenuButton>
-        {menu && <Menu />}
-      </RightSectionUser>
+          <RightSectionUser>
+            <UserAvatar>
+              <img src={user.photoURL} alt="imagen de usuario" />
+            </UserAvatar>
+            <MenuButton onClick={handlePopUp}>
+              <AiFillCaretDown />
+            </MenuButton>
+            {menu && <Menu />}
+          </RightSectionUser>
+        </>
+      ) : null}
     </HeaderContent>
   );
 };

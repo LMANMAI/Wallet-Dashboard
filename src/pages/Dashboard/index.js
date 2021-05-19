@@ -7,14 +7,11 @@ import {
   Main,
   Container,
 } from "../../assets";
-// import { auth } from "../../firebase/firebase";
-import { selectUserEmail, setActiveUser } from "../../features/user/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 const DashboardPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const userEmail = useSelector(selectUserEmail);
   //console.log(userEmail);
   // useEffect(() => {
   //   auth.onAuthStateChanged(async (user) => {

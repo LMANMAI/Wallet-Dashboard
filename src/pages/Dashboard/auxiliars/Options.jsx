@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MenuContainer, MenuItem } from "../../../assets";
 import {
   CgArrowsExchangeAltV,
@@ -12,6 +12,7 @@ import {
   setMenuPosition,
   selectMenuState,
 } from "../../../features/user/userSlice";
+import Modal from "./Modal";
 const Options = () => {
   const dispatch = useDispatch(setMenuPosition);
   const movestate = useSelector(selectMenuState);
@@ -19,31 +20,43 @@ const Options = () => {
     dispatch(setMenuPosition(false));
     console.log(movestate);
   };
-  return (
-    <MenuContainer move={movestate}>
-      <MenuItem>
-        <CgArrowsExchangeAltV />
-        Transfer
-      </MenuItem>
+  const [modal, setModal] = useState(false);
 
-      <MenuItem>
-        <CgMathPercent />
-        voucher
-      </MenuItem>
-      <MenuItem>
-        <IoIosPaper />
-        Bill
-      </MenuItem>
-      <MenuItem>
-        <IoIosPeople />
-        Send
-      </MenuItem>
-      <MenuItem>
-        <CgShoppingCart />
-        Shopping
-      </MenuItem>
-      <CgClose onClick={() => handleMenuClose()} />
-    </MenuContainer>
+  const openModal = () => {
+    setModal((prev) => !prev);
+    console.log(modal);
+  };
+  return (
+    <>
+      <MenuContainer move={movestate}>
+        <MenuItem>
+          <CgClose onClick={() => handleMenuClose()} />
+        </MenuItem>
+
+        <MenuItem>
+          <CgArrowsExchangeAltV />
+          Transfer
+        </MenuItem>
+
+        <MenuItem>
+          <CgMathPercent />
+          <button onClick={() => openModal()}>Agregar tarjeta</button>
+        </MenuItem>
+        <MenuItem>
+          <IoIosPaper />
+          Bill
+        </MenuItem>
+        <MenuItem>
+          <IoIosPeople />
+          Send
+        </MenuItem>
+        <MenuItem>
+          <CgShoppingCart />
+          Shopping
+        </MenuItem>
+      </MenuContainer>
+      <Modal modal={modal} setModal={setModal} />
+    </>
   );
 };
 

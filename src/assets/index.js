@@ -7,7 +7,7 @@ export { default as HeaderSection } from "../pages/Dashboard/auxiliars/HeaderSec
 export { default as Movements } from "../pages/Dashboard/auxiliars/Movements";
 export { default as Options } from "../pages/Dashboard/auxiliars/Options";
 //variabless
-const GrisC = "#EBEBEB";
+const White = "#FFF";
 const GrisO = "#C0C0C0";
 const Naranja = "#FF6700";
 const AzulO = "#004E98";
@@ -17,7 +17,7 @@ const AzulC = "#3A6EA5";
 export const AuthContainer = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: ${GrisC};
+  background-color: ${White};
   display: grid;
   place-items: center;
 `;
@@ -25,7 +25,7 @@ export const AuthContainer = styled.div`
 export const Formulario = styled.form`
   width: 100%;
   height: 100%;
-  background-color: ${GrisC};
+  background-color: ${White};
   padding: 15px;
   padding-top: 125px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
@@ -48,7 +48,7 @@ export const LoginContainer = styled.div`
   width: 100%;
   transition: all 400ms ease-in-out;
   transform: ${(props) =>
-    props.formulariomove ? "translateX(-5px)" : "translateX(-110vw)"};
+    props.formulariomove ? "translateX(-5px)" : "translateX(-100vw)"};
 `;
 export const SignContainer = styled.div`
   transition: all 400ms ease-in-out;
@@ -56,7 +56,7 @@ export const SignContainer = styled.div`
   position: absolute;
   top: 100px;
   transform: ${(props) =>
-    props.formulariomove ? "translateX(-110vw)" : "translateX(-10px)"};
+    props.formulariomove ? "translateX(-100vw)" : "translateX(-10px)"};
 `;
 
 export const InputsContainer = styled.div`
@@ -171,7 +171,7 @@ export const Main = styled.main`
   width: 100%;
   height: fit-content;
   overflow-x: hidden;
-  background-color: ${GrisC};
+  background-color: ${White};
   padding: 10px;
 `;
 export const Container = styled.div`
@@ -191,8 +191,9 @@ export const HeaderContent = styled.div`
   height: 3.5rem;
   margin-bottom: 5px;
   padding: 10px;
-  border: 1px solid blue;
   grid-column: 1/ 3;
+  background-color: ${GrisO};
+  border-radius: 25px;
 `;
 export const UserInfo = styled.div`
   height: 100%;
@@ -222,8 +223,6 @@ export const LeftSectionUser = styled.div`
   @media (min-width: 768px) {
     svg {
       display: none;
-
-      border: 1px solid red;
     }
   }
 `;
@@ -258,7 +257,7 @@ export const MenuWrapper = styled.div`
     cursor: pointer;
     border-radius: 15px;
     &:hover {
-      background-color: ${GrisC};
+      background-color: ${White};
     }
     &:last-child {
       &:before {
@@ -266,7 +265,7 @@ export const MenuWrapper = styled.div`
         display: block;
         height: 2px;
         width: 100%;
-        background-color: ${GrisC};
+        background-color: ${White};
         margin-bottom: 2px;
       }
     }
@@ -275,40 +274,27 @@ export const MenuWrapper = styled.div`
 
 /**Seccion Main de las tarjetas */
 export const CardConteiner = styled.section`
-  //width: 95vw;
+  width: 80%;
   height: 40vh;
   margin: 15px auto;
   margin-bottom: 25px;
-  box-sizing: border-box;
-`;
-
-export const CardSlider = styled(Slider)`
-  width: 100%;
-  height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40vh;
-  @media (min-width: 768px) {
-    width: 500px;
-    margin: 0 auto;
-  }
 `;
 
 export const CardWraper = styled.div`
-  width: 95%;
+  /* width: 95%;
   margin: 0 auto;
-  height: 40vh;
-  max-width: 300px;
-  max-height: 200px;
+  height: 40vh; */
+  width: 300px;
+  height: 200px;
   position: relative;
   overflow: hidden;
   border-radius: 35px;
   background-color: ${AzulC};
-  border: 1px solid ${GrisO};
   border-bottom: none;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  margin: 10px;
 `;
 export const BgCard = styled.div`
   position: absolute;
@@ -326,60 +312,77 @@ export const MainCard = styled.div`
 
 /**Menu de Opciones  */
 export const MenuContainer = styled.nav`
-  border: 1px solid brown;
+  background-color: white;
   top: 0;
-  z-index: 99;
-  width: 70%;
+  z-index: 4;
+  width: 65vw;
   left: 0;
   height: 100vh;
-  background-color: ${GrisC};
   position: fixed;
   transform: ${(props) =>
     props.move ? "translateX(0px)" : "translateX(-500px)"};
   transition: all 300ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10px;
+
   @media (min-width: 768px) {
     transform: translateX(0px);
     width: 100%;
     position: initial;
-    border: 1px solid blue;
     grid-row: 2 / 4;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-right: 1px solid #bdbdbd;
+    margin-right: 5px;
     svg {
-      display: none;
+      visibility: hidden;
+      color: ${GrisO};
     }
   }
 `;
 
 export const MenuItem = styled.div`
-  background-color: ${GrisO};
+  color: ${GrisO};
   border-radius: 25px;
+  width: 100%;
   padding: 2px;
   font-size: 12px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   text-align: center;
   align-items: center;
   justify-content: center;
-  color: white;
+
   cursor: pointer;
+  margin: 2px 0;
   svg {
     font-size: 30px;
+    visibility: visible;
   }
-  @media (max-width: 768px) {
-    max-width: 150px;
+  &:first-child {
+    background-color: transparent;
+    color: #8c8c8c;
+    margin-bottom: 15px;
+  }
+  @media (min-width: 768px) {
+    &:first-child {
+      display: none;
+    }
   }
 `;
 
 /**Transactions */
 export const MovementsSection = styled.section`
   min-height: 40vh;
-  width: 100%;
-  padding: 5px 2%;
-  margin: 5px;
-  border: 1px solid orange;
+  width: 95%;
+  margin: 0 auto;
+  padding: 12px;
+  background-color: #bdbdbd;
   grid-column: 2 / 3;
+  border-radius: 15px;
 `;
 export const Section = styled.div`
   display: flex;
@@ -394,4 +397,24 @@ export const Movement = styled.div`
   margin: 5px 0;
   min-height: 70px;
   align-items: center;
+`;
+
+export const ModalView = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+export const ModalContent = styled.div`
+  width: 90vw;
+  height: 500px;
+  background-color: white;
 `;

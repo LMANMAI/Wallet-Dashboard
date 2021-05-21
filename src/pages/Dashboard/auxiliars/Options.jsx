@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MenuContainer, MenuItem } from "../../../assets";
 import {
   CgArrowsExchangeAltV,
-  CgMathPercent,
+  CgCreditCard,
   CgShoppingCart,
   CgClose,
 } from "react-icons/cg";
@@ -24,7 +24,7 @@ const Options = () => {
 
   const openModal = () => {
     setModal((prev) => !prev);
-    console.log(modal);
+    dispatch(setMenuPosition(false));
   };
   return (
     <>
@@ -35,24 +35,21 @@ const Options = () => {
 
         <MenuItem>
           <CgArrowsExchangeAltV />
-          Transfer
+          Transferencias
         </MenuItem>
 
         <MenuItem>
-          <CgMathPercent />
+          <CgCreditCard />
           <button onClick={() => openModal()}>Agregar tarjeta</button>
         </MenuItem>
         <MenuItem>
           <IoIosPaper />
-          Bill
+          Facturas
         </MenuItem>
-        <MenuItem>
-          <IoIosPeople />
-          Send
-        </MenuItem>
+
         <MenuItem>
           <CgShoppingCart />
-          Shopping
+          Compras
         </MenuItem>
       </MenuContainer>
       <Modal modal={modal} setModal={setModal} />

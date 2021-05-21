@@ -1,0 +1,29 @@
+.c {
+  position: absolute;
+  max-width: 350px;
+  max-height: 350px;
+  width: 78%;
+  height: 200px;
+  cursor: pointer;
+  border-radius: 35px;
+  will-change: transform, opacity;
+  box-shadow: 0 3px 6px rgba(#000, 0.16), 0 3px 6px rgba(#000, 0.23);
+}
+.container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}
+.front,
+.back {
+  background-size: cover;
+}
+
+.back {
+  background-color: #3a6ea5;
+}
+
+.front {
+  background-color: #004e98;
+}

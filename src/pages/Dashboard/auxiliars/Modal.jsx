@@ -1,11 +1,21 @@
 import React, { useRef, useCallback, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
-import { ModalView, ModalContent } from "../../../assets";
+import {
+  ModalView,
+  ModalContent,
+  ModalCloseButton,
+  FormularioModal,
+  InputContainerModal,
+  InputModal,
+  Icon,
+  ButtonModal,
+} from "../../../assets";
+import { GrClose } from "react-icons/gr";
 const Modal = ({ modal, setModal }) => {
   const modalRef = useRef();
   const animation = useSpring({
     config: {
-      duration: 250,
+      duration: 350,
     },
     opacity: modal ? 1 : 0,
     transform: modal ? "translateY(0%)" : "translateY(-100%)",
@@ -34,8 +44,26 @@ const Modal = ({ modal, setModal }) => {
         <ModalView ref={modalRef} onClick={(e) => closeModal(e)}>
           <animated.div style={animation}>
             <ModalContent>
-              modal
-              <button onClick={() => setModal()}>cerrar X</button>
+              <ModalCloseButton onClick={() => setModal()}>
+                <GrClose />
+              </ModalCloseButton>
+              <div>
+                <Icon>
+                  <img src="/assets/debit-card.png" alt="card-icon" />
+                </Icon>
+                <h4>Datos para solicitar la tarjeta</h4>
+                <FormularioModal>
+                  <InputContainerModal>
+                    <InputModal type="text" placeholder="Nombre" />
+                    <InputModal type="text" placeholder="Apellido" />
+                    <InputModal
+                      type="number"
+                      placeholder="Ingresos Mensuales"
+                    />
+                  </InputContainerModal>
+                </FormularioModal>
+                <ButtonModal>Solicitar</ButtonModal>
+              </div>
             </ModalContent>
           </animated.div>
         </ModalView>

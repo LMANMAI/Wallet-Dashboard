@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CardConteiner, CardSlider } from "../../../assets";
+import { CardConteiner } from "../../../assets";
 import Card from "./Card";
 
 const CardSection = () => {

@@ -60,7 +60,7 @@ export const SignContainer = styled.div`
 `;
 
 export const InputsContainer = styled.div`
-  height: 60%;
+  min-height: 60%;
   margin: 10px 0;
   padding: 10px;
   display: flex;
@@ -178,7 +178,7 @@ export const Container = styled.div`
   //height: 100vh;
   @media (min-width: 768px) {
     display: grid;
-    grid-template: auto 1fr / 200px 1fr;
+    grid-template: auto 1fr / 200px 1fr 1fr;
   }
 `;
 /**seccion del header */
@@ -191,7 +191,7 @@ export const HeaderContent = styled.div`
   height: 3.5rem;
   margin-bottom: 5px;
   padding: 10px;
-  grid-column: 1/ 3;
+  grid-column: 1/ 4;
   background-color: ${GrisO};
   border-radius: 25px;
 `;
@@ -273,42 +273,40 @@ export const MenuWrapper = styled.div`
 `;
 
 /**Seccion Main de las tarjetas */
-export const CardConteiner = styled.section`
-  width: 80%;
-  height: 40vh;
-  margin: 15px auto;
-  margin-bottom: 25px;
-  display: flex;
-`;
 
 export const CardWraper = styled.div`
-  /* width: 95%;
-  margin: 0 auto;
-  height: 40vh; */
-  width: 300px;
-  height: 200px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 35px;
-  background-color: ${AzulC};
-  border-bottom: none;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  margin: 10px;
+  margin: 15px;
+  @media (min-width: 768px) {
+    margin: 30px;
+    transition: all 300ms ease-in-out;
+    &:hover {
+      margin-left: 80px;
+      //transform: translateY(10px) scale(1.01);
+    }
+  }
 `;
-export const BgCard = styled.div`
-  position: absolute;
+export const CardConteiner = styled.section`
+  grid-column: 2 / 3;
+  height: 90vh;
+  min-height: 300px;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    &:hover {
+      ${CardWraper} {
+        margin: 40px;
+      }
+    }
+  }
+`;
+
+export const FrontCard = styled.div`
   width: 100%;
   height: 100%;
-  background: url("/assets/pattern.jpeg");
-  filter: opacity(30%);
+  padding: 10px;
 `;
-export const MainCard = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  padding: 15px;
-`;
+export const BackCard = styled(FrontCard)``;
 
 /**Menu de Opciones  */
 export const MenuContainer = styled.nav`
@@ -355,12 +353,19 @@ export const MenuItem = styled.div`
   text-align: center;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
   margin: 2px 0;
   svg {
     font-size: 30px;
     visibility: visible;
+    margin: 0 5px;
+  }
+  button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: ${GrisO};
+    cursor: pointer;
   }
   &:first-child {
     background-color: transparent;
@@ -371,6 +376,14 @@ export const MenuItem = styled.div`
     &:first-child {
       display: none;
     }
+    &:hover {
+      background-color: ${Naranja};
+      color: white;
+      button,
+      svg {
+        color: white;
+      }
+    }
   }
 `;
 
@@ -378,10 +391,10 @@ export const MenuItem = styled.div`
 export const MovementsSection = styled.section`
   min-height: 40vh;
   width: 95%;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 12px;
   background-color: #bdbdbd;
-  grid-column: 2 / 3;
+  grid-column: 3 / 4;
   border-radius: 15px;
 `;
 export const Section = styled.div`
@@ -403,6 +416,7 @@ export const ModalView = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(3px);
   position: fixed;
   top: 0;
   left: 0;
@@ -415,6 +429,58 @@ export const ModalView = styled.div`
 `;
 export const ModalContent = styled.div`
   width: 90vw;
-  height: 500px;
+  border-radius: 15px;
+  padding: 15px;
   background-color: white;
+  h4 {
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    width: 40vw;
+  }
+`;
+export const ModalCloseButton = styled.button`
+  border: none;
+  background-color: transparent;
+  text-align: end;
+  width: 100%;
+
+  svg {
+    font-size: 20px;
+    font-weight: bold;
+  }
+`;
+export const FormularioModal = styled(Formulario)`
+  padding: 0;
+  width: 100%;
+  box-shadow: none;
+`;
+export const InputContainerModal = styled(InputsContainer)``;
+export const InputModal = styled(Input)`
+  border-radius: 15px;
+  padding: 10px;
+  padding-left: 20px;
+  margin: 8px 0;
+  background-color: #e0e0e0;
+  &::placeholder {
+    color: black;
+  }
+`;
+export const Icon = styled.div`
+  width: 75px;
+  margin: 0 auto;
+  img {
+    width: 100%;
+  }
+`;
+export const ButtonModal = styled.button`
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  outline: none;
+  margin: 0 auto;
+  display: flex;
+  border-radius: 15px;
+  background-color: #90be6d;
+  color: white;
 `;

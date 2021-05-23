@@ -275,27 +275,34 @@ export const MenuWrapper = styled.div`
 /**Seccion Main de las tarjetas */
 
 export const CardWraper = styled.div`
-  margin: 15px;
+  transition: all 550ms ease-in-out;
+  width: 78%;
+  height: 40px;
+
   @media (min-width: 768px) {
-    margin: 30px;
-    transition: all 300ms ease-in-out;
+    margin: 10px auto;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
     &:hover {
-      margin-left: 80px;
-      //transform: translateY(10px) scale(1.01);
+      margin-left: 15px;
     }
   }
 `;
 export const CardConteiner = styled.section`
+  transition: all 250ms ease-in-out;
+  position: relative;
   grid-column: 2 / 3;
-  height: 90vh;
   min-height: 300px;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   @media (min-width: 768px) {
+    width: 100%;
+    height: 85vh;
     &:hover {
       ${CardWraper} {
-        margin: 40px;
+        height: 300px;
       }
     }
   }

@@ -6,7 +6,7 @@ import {
   CgShoppingCart,
   CgClose,
 } from "react-icons/cg";
-import { IoIosPaper, IoIosPeople } from "react-icons/io";
+import { IoIosPaper } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setMenuPosition,

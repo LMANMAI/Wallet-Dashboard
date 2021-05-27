@@ -276,17 +276,18 @@ export const MenuWrapper = styled.div`
 
 export const CardWraper = styled.div`
   transition: all 550ms ease-in-out;
-  width: 78%;
+  width: 100%;
   height: 40px;
-
+  display: flex;
+  justify-content: center;
   @media (min-width: 768px) {
     margin: 10px auto;
-    width: 100%;
+    width: 78%;
     height: 50px;
-    display: flex;
-    justify-content: center;
+    padding-top: 50px;
     &:hover {
-      margin-left: 15px;
+      transform: translateY(-10px) scale(1.05);
+      z-index: 10;
     }
   }
 `;
@@ -302,7 +303,8 @@ export const CardConteiner = styled.section`
     height: 85vh;
     &:hover {
       ${CardWraper} {
-        height: 300px;
+        height: 280px;
+        padding-top: 0px;
       }
     }
   }

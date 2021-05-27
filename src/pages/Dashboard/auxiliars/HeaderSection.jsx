@@ -16,7 +16,7 @@ import { FirebaseContext } from "../../../firebase";
 const HeaderSection = () => {
   const [menu, setMenu] = useState(false);
   const { user, firebase } = useContext(FirebaseContext);
-  console.log(user);
+
   const dispatch = useDispatch();
   const handlePopUp = () => {
     setMenu(!menu);

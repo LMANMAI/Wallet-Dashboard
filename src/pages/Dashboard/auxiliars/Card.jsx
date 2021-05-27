@@ -3,7 +3,7 @@ import { useSpring, a } from "react-spring";
 import styles from "./styles.module.css";
 
 import { CardWraper, FrontCard, BackCard } from "../../../assets";
-const Card = () => {
+const Card = ({ cardinfo }) => {
   const [flipped, setFlipped] = useState(false);
   const { transform, opacity } = useSpring({
     opacity: flipped ? 1 : 0,
@@ -20,13 +20,15 @@ const Card = () => {
           rotateX: "180deg",
         }}
       >
-        <FrontCard>Frontal</FrontCard>
+        <FrontCard>Trasera</FrontCard>
       </a.div>
       <a.div
         className={`${styles.c} ${styles.back}`}
         style={{ opacity: opacity.to((o) => 1 - o), transform }}
       >
-        <FrontCard>Trasera</FrontCard>
+        <FrontCard>
+          <p>{cardinfo.nombre}</p>
+        </FrontCard>
       </a.div>
     </CardWraper>
   );

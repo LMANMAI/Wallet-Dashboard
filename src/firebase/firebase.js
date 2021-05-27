@@ -1,5 +1,6 @@
 import app from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 import firebase from "firebase";
 import firebaseConfig from "./config";
 
@@ -9,13 +10,13 @@ const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 const storage = firebase.storage();
 
-export { auth, provider, storage, db };
 class Firebase {
   constructor() {
     if (!app.apps.length) {
       app.initializeApp(firebaseConfig);
     }
     this.auth = app.auth();
+    this.db = app.firestore();
   }
   //registra un usuario
   async register(name, email, password) {
@@ -31,11 +32,14 @@ class Firebase {
   async login(email, password) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
-
   //cerrar sesion
   async logout() {
     await this.auth.signOut();
   }
+  //crear colleccion en firebase
+  //Acceder a la base de datos de firebase
+  //traer los datos de firebase
 }
 const firebaseE = new Firebase();
+export { auth, provider, storage, db };
 export default firebaseE;

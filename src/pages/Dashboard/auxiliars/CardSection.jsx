@@ -1,32 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import { CardConteiner } from "../../../assets";
 import Card from "./Card";
-import { FirebaseContext } from "../../../firebase";
+import { useSelector } from "react-redux";
+import { selectCardState } from "../../../features/user/userSlice";
 
 const CardSection = () => {
-  const [cardsarray, saveCards] = useState([]);
-  const { firebase } = useContext(FirebaseContext);
-
-  useEffect(() => {
-    const handleCards = () => {
-      firebase.db.collection("cards").onSnapshot(handdleSnapshot);
-    };
-    handleCards();
-  });
-  function handdleSnapshot(snapshot) {
-    const cards = snapshot.docs.map((doc) => {
-      return {
-        id: doc.id,
-        ...doc.data(),
-      };
-    });
-    saveCards(cards);
-  }
+  const cards = useSelector(selectCardState);
   return (
     <CardConteiner>
-      {React.Children.toArray(
-        cardsarray.map((card) => <Card cardinfo={card} />)
-      )}
+      {React.Children.toArray(cards.map((card) => <Card cardinfo={card} />))}
     </CardConteiner>
   );
 };

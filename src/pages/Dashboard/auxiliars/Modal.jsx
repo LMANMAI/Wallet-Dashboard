@@ -54,7 +54,7 @@ const Modal = ({ modal, setModal }) => {
     salary: "",
     date: Date.now(),
     cvv: Math.floor(Math.random() * (999 - 100)) + 100,
-    number: 4 + Math.floor(Math.random() * (0 + 1000000000000000)) + 0,
+    number: 4 + (Math.floor(Math.random() * (0 + 1000000000000000)) + 0),
   });
 
   const handleChange = (e) => {

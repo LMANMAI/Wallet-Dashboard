@@ -284,9 +284,10 @@ export const CardWraper = styled.div`
     margin: 10px auto;
     width: 78%;
     height: 50px;
-    padding-top: 50px;
     &:hover {
-      transform: translateY(-10px) scale(1.05);
+      border: 1px solid red;
+      margin-bottom: 0;
+      transform: translateY(-30px) scale(1.03);
       z-index: 10;
     }
   }
@@ -303,7 +304,7 @@ export const CardConteiner = styled.section`
     height: 85vh;
     &:hover {
       ${CardWraper} {
-        height: 280px;
+        height: 350px;
         padding-top: 0px;
       }
     }

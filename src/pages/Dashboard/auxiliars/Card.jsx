@@ -20,14 +20,17 @@ const Card = ({ cardinfo }) => {
           rotateX: "180deg",
         }}
       >
-        <FrontCard>Trasera</FrontCard>
+        <BackCard>
+          <p>{cardinfo.cvv}</p>
+        </BackCard>
       </a.div>
       <a.div
         className={`${styles.c} ${styles.back}`}
         style={{ opacity: opacity.to((o) => 1 - o), transform }}
       >
         <FrontCard>
-          <p>{cardinfo.nombre}</p>
+          <p>{cardinfo.name}</p>
+          <p>{cardinfo.last_name}</p>
         </FrontCard>
       </a.div>
     </CardWraper>

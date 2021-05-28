@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { AuthContainer, Formulario } from "../../assets";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { auth, provider } from "../../firebase/firebase";
 import { setActiveUser } from "../../features/user/userSlice";

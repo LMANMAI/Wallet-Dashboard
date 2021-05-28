@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   InputsContainer,
   InputContent,
@@ -7,6 +7,8 @@ import {
   Button,
   LoginContainer,
   MessageContainer,
+  ErrorContainer,
+  ErrorMessage,
 } from "../../../assets";
 import { RiLock2Fill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
@@ -18,51 +20,64 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import firebase from "../../../firebase";
 import { useHistory } from "react-router-dom";
+import useValidation from "../../../hooks/useValidation";
+import validateLoginAccount from "../../../hooks/validation/ validateLoginAccount";
+const INITIAL_STATE = {
+  email: "",
+  password: "",
+};
 const Login = ({ handleSignInPopUp }) => {
+  const { values, errors, handleChangeH, handleSubmitH, handleBlurH } =
+    useValidation(INITIAL_STATE, validateLoginAccount, loginUSer);
+  const { email, password } = values;
+
   const dispatch = useDispatch();
   const history = useHistory();
   const handleMenu = (e) => {
     e.preventDefault();
     dispatch(setFormPosition(false));
   };
-  const [userlogin, setUserLogin] = useState({
-    email: "",
-    password: "",
-  });
-  const { email, password } = userlogin;
-  const handleChange = (e) => {
-    setUserLogin({
-      ...userlogin,
-      [e.target.name]: e.target.value,
-    });
-  };
+
   async function loginUSer(e) {
-    e.preventDefault();
     try {
       await firebase.login(email, password);
       history.push("/Dashboard");
     } catch (error) {
-      console.error(error.message);
+      //console.error(error.message);
     }
   }
   const formulariomove = useSelector(selectFormState);
 
   return (
-    <LoginContainer formulariomove={formulariomove}>
+    <LoginContainer
+      formulariomove={formulariomove}
+      onSubmit={handleSubmitH}
+      novalidate
+    >
       <h2>Hi there, Welcome back!</h2>
       <p>Plase fill the required data bellow so we can proceed your acount</p>
       <InputsContainer>
+        {errors.email && (
+          <ErrorContainer>
+            <ErrorMessage>{errors.email}</ErrorMessage>
+          </ErrorContainer>
+        )}
         <InputContent>
           <MdEmail />
           <Input
-            type="text"
+            type="email"
             placeholder="Email"
             name="email"
             value={email}
-            onChange={handleChange}
+            onChange={handleChangeH}
+            onBlur={handleBlurH}
           />
         </InputContent>
-
+        {errors.password && (
+          <ErrorContainer>
+            <ErrorMessage>{errors.password}</ErrorMessage>
+          </ErrorContainer>
+        )}
         <InputContent>
           <RiLock2Fill />
           <Input
@@ -70,7 +85,8 @@ const Login = ({ handleSignInPopUp }) => {
             placeholder="Password"
             name="password"
             value={password}
-            onChange={handleChange}
+            onChange={handleChangeH}
+            onBlur={handleBlurH}
           />
         </InputContent>
         <MessageContainer>

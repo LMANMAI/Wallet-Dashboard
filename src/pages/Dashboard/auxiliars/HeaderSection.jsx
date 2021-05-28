@@ -6,16 +6,17 @@ import {
   RightSectionUser,
   LeftSectionUser,
   MenuButton,
+  UserContainer,
 } from "../../../assets";
 import { AiFillCaretDown } from "react-icons/ai";
 import { TiThMenu } from "react-icons/ti";
 import Menu from "./Menu";
 import { setMenuPosition } from "../../../features/user/userSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { FirebaseContext } from "../../../firebase";
 const HeaderSection = () => {
   const [menu, setMenu] = useState(false);
-  const { user, firebase } = useContext(FirebaseContext);
+  const { user } = useContext(FirebaseContext);
 
   const dispatch = useDispatch();
   const handlePopUp = () => {
@@ -24,6 +25,10 @@ const HeaderSection = () => {
   const handleMenu = () => {
     dispatch(setMenuPosition(true));
   };
+  let firstLetter;
+  if (user) {
+    firstLetter = user.displayName.charAt(0);
+  }
   return (
     <HeaderContent>
       {user ? (
@@ -38,7 +43,11 @@ const HeaderSection = () => {
 
           <RightSectionUser>
             <UserAvatar>
-              <img src={user.photoURL} alt="imagen de usuario" />
+              {user.photoURL ? (
+                <img src={user.photoURL} alt="imagen de usuario" />
+              ) : (
+                <UserContainer>{firstLetter}</UserContainer>
+              )}
             </UserAvatar>
             <MenuButton onClick={handlePopUp}>
               <AiFillCaretDown />

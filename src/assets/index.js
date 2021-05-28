@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Slider from "react-slick";
 
 /**Componentes del Dashboard */
 export { default as CardSection } from "../pages/Dashboard/auxiliars/CardSection";
@@ -22,12 +21,12 @@ export const AuthContainer = styled.div`
   place-items: center;
 `;
 
-export const Formulario = styled.form`
+export const Formulario = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${White};
   padding: 15px;
-  padding-top: 125px;
+  padding-top: 180px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
     rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
@@ -44,32 +43,33 @@ export const Formulario = styled.form`
     border-radius: 35px;
   }
 `;
-export const LoginContainer = styled.div`
+export const LoginContainer = styled.form`
   width: 100%;
   transition: all 400ms ease-in-out;
   transform: ${(props) =>
-    props.formulariomove ? "translateX(-5px)" : "translateX(-100vw)"};
+    props.formulariomove ? "translateX(-5px)" : "translateX(105vw)"};
 `;
-export const SignContainer = styled.div`
+export const SignContainer = styled.form`
   transition: all 400ms ease-in-out;
   width: 100%;
   position: absolute;
   top: 100px;
   transform: ${(props) =>
-    props.formulariomove ? "translateX(-100vw)" : "translateX(-10px)"};
+    props.formulariomove ? "translateX(-105vw)" : "translateX(-5px)"};
 `;
 
 export const InputsContainer = styled.div`
   min-height: 60%;
   margin: 10px 0;
   padding: 10px;
+  padding-left: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 `;
 export const InputContent = styled.div`
-  width: 100%;
+  width: 95%;
   height: 50px;
   background-color: ${GrisO};
   border-radius: 25px;
@@ -87,6 +87,17 @@ export const InputContent = styled.div`
       color: ${Naranja};
     }
   }
+`;
+export const ErrorContainer = styled.div`
+  width: 95%;
+  margin: 2px 0;
+  padding: 4px;
+  background-color: ${AzulC};
+  border-radius: 10px;
+`;
+export const ErrorMessage = styled.p`
+  margin-left: 15px;
+  color: white;
 `;
 export const MessageContainer = styled.div`
   align-self: flex-start;
@@ -135,7 +146,7 @@ export const ButtonContainer = styled.div`
     display: block;
     height: 1px;
     background-color: ${GrisO};
-    width: 95%;
+    width: 100vw;
     position: absolute;
     top: 5px;
   }
@@ -160,6 +171,7 @@ export const Button = styled.button`
     align-items: center;
     justify-content: center;
     color: black;
+    border: 1px solid ${GrisO};
     svg {
       font-size: 1rem;
       margin-right: 5px;
@@ -203,6 +215,7 @@ export const UserInfo = styled.div`
   padding: 5px;
   p {
     font-weight: bold;
+    text-transform: capitalize;
   }
 `;
 export const UserAvatar = styled.div`
@@ -271,7 +284,20 @@ export const MenuWrapper = styled.div`
     }
   }
 `;
-
+export const UserContainer = styled.div`
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: white;
+  background-color: ${Naranja};
+`;
 /**Seccion Main de las tarjetas */
 
 export const CardWraper = styled.div`
@@ -284,11 +310,14 @@ export const CardWraper = styled.div`
     margin: 10px auto;
     width: 78%;
     height: 50px;
+    transition: all 550ms cubic-bezier(0.04, 0.85, 0.98, 0.35);
     &:hover {
-      border: 1px solid red;
       margin-bottom: 0;
-      transform: translateY(-30px) scale(1.03);
+      transform: translateY(-30px) scale(1.01);
       z-index: 10;
+      &:first-child {
+        transform: translateY(-5px) scale(1.03);
+      }
     }
   }
 `;
@@ -303,8 +332,9 @@ export const CardConteiner = styled.section`
     width: 100%;
     height: 85vh;
     &:hover {
+      transition: height 650ms ease-in-out;
       ${CardWraper} {
-        height: 350px;
+        height: 320px;
         padding-top: 0px;
       }
     }
@@ -400,12 +430,13 @@ export const MenuItem = styled.div`
 /**Transactions */
 export const MovementsSection = styled.section`
   min-height: 40vh;
-  width: 95%;
-  margin: 20px auto;
-  padding: 12px;
-  background-color: #bdbdbd;
+  width: 96%;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #f3f3f3;
   grid-column: 3 / 4;
   border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 export const Section = styled.div`
   display: flex;

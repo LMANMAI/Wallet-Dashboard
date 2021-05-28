@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   InputsContainer,
   InputContent,
@@ -7,6 +7,8 @@ import {
   Button,
   SignContainer,
   MessageContainer,
+  ErrorContainer,
+  ErrorMessage,
 } from "../../../assets";
 import { RiLock2Fill, RiUserFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
@@ -18,44 +20,53 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import firebase from "../../../firebase";
 import { useHistory } from "react-router-dom";
+import useValidation from "../../../hooks/useValidation";
+import validateCreateAccount from "../../../hooks/validation/validateCreateAccount";
+const INITIAL_STATE = {
+  name: "",
+  email: "",
+  password: "",
+};
 const Register = ({ handleSignInPopUp }) => {
+  const { values, errors, handleChangeH, handleSubmitH, handleBlurH } =
+    useValidation(INITIAL_STATE, validateCreateAccount, handleRegister);
+  const { name, email, password } = values;
+
   const dispatch = useDispatch();
   const history = useHistory();
-  const [newuser, setNewUSer] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+
   const handleMenu = (e) => {
     e.preventDefault();
     dispatch(setFormPosition(true));
   };
-  const { name, email, password } = newuser;
-  const handleChange = (e) => {
-    setNewUSer({
-      ...newuser,
-      [e.target.name]: e.target.value,
-    });
-  };
+
   async function handleRegister(e) {
-    e.preventDefault();
     try {
       await firebase.register(name, email, password);
       history.push("/Dashboard");
     } catch (error) {
       //guardo el posible error de validacion para mostrarlo por pantalla
-      console.error(error.message);
+      //console.error(error.message);
     }
   }
   const formulariomove = useSelector(selectFormState);
   return (
-    <SignContainer formulariomove={formulariomove}>
+    <SignContainer
+      formulariomove={formulariomove}
+      onSubmit={handleSubmitH}
+      novalidate
+    >
       <h2>Hi there, Welcome!</h2>
       <p>
         Plase fill the required data bellow so we can proceed to create your
         acount
       </p>
       <InputsContainer>
+        {errors.name && (
+          <ErrorContainer>
+            <ErrorMessage>{errors.name}</ErrorMessage>
+          </ErrorContainer>
+        )}
         <InputContent>
           <RiUserFill />
           <Input
@@ -63,9 +74,15 @@ const Register = ({ handleSignInPopUp }) => {
             placeholder="Name"
             name="name"
             value={name}
-            onChange={handleChange}
+            onChange={handleChangeH}
+            onBlur={handleBlurH}
           />
         </InputContent>
+        {errors.email && (
+          <ErrorContainer>
+            <ErrorMessage>{errors.email}</ErrorMessage>
+          </ErrorContainer>
+        )}
         <InputContent>
           <MdEmail />
           <Input
@@ -73,9 +90,15 @@ const Register = ({ handleSignInPopUp }) => {
             placeholder="Email"
             name="email"
             value={email}
-            onChange={handleChange}
+            onChange={handleChangeH}
+            onBlur={handleBlurH}
           />
         </InputContent>
+        {errors.password && (
+          <ErrorContainer>
+            <ErrorMessage>{errors.password}</ErrorMessage>
+          </ErrorContainer>
+        )}
         <InputContent>
           <RiLock2Fill />
           <Input
@@ -83,7 +106,8 @@ const Register = ({ handleSignInPopUp }) => {
             placeholder="Password"
             name="password"
             value={password}
-            onChange={handleChange}
+            onChange={handleChangeH}
+            onBlur={handleBlurH}
           />
         </InputContent>
         <MessageContainer>

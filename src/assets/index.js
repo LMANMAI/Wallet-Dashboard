@@ -310,13 +310,13 @@ export const CardWraper = styled.div`
     margin: 10px auto;
     width: 78%;
     height: 50px;
-    transition: all 550ms cubic-bezier(0.04, 0.85, 0.98, 0.35);
+    transition: all 350ms cubic-bezier(0.04, 0.85, 0.98, 0.35);
     &:hover {
       margin-bottom: 0;
-      transform: translateY(-30px) scale(1.01);
+      transform: translateY(-10px) scale(1.01);
       z-index: 10;
       &:first-child {
-        transform: translateY(-5px) scale(1.03);
+        transform: translateY(-5px) scale(1.01);
       }
     }
   }
@@ -325,7 +325,7 @@ export const CardConteiner = styled.section`
   transition: all 250ms ease-in-out;
   position: relative;
   grid-column: 2 / 3;
-  min-height: 300px;
+  min-height: 290px;
   display: flex;
   flex-direction: column;
   @media (min-width: 768px) {
@@ -334,8 +334,9 @@ export const CardConteiner = styled.section`
     &:hover {
       transition: height 650ms ease-in-out;
       ${CardWraper} {
-        height: 320px;
+        height: 180px;
         padding-top: 0px;
+        border: 1px solid red;
       }
     }
   }
@@ -386,13 +387,13 @@ export const MenuItem = styled.div`
   color: ${GrisO};
   border-radius: 25px;
   width: 100%;
-  padding: 2px;
+  padding: 5px;
   font-size: 12px;
   display: flex;
   flex-direction: row;
   text-align: center;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
   cursor: pointer;
   margin: 2px 0;
   svg {
@@ -456,8 +457,8 @@ export const Movement = styled.div`
 export const ModalView = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(3px);
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
   position: fixed;
   top: 0;
   left: 0;
@@ -477,7 +478,9 @@ export const ModalContent = styled.div`
     text-align: center;
   }
   @media (min-width: 768px) {
-    width: 40vw;
+    min-width: 40vw;
+    width: fit-content;
+    border: 1px solid red;
   }
 `;
 export const ModalCloseButton = styled.button`

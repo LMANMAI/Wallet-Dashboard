@@ -1,13 +1,13 @@
 .c {
   position: absolute;
   max-width: 350px;
-  max-height: 350px;
   width: 78%;
   height: 200px;
   cursor: pointer;
   border-radius: 35px;
   will-change: transform, opacity;
-  box-shadow: 0 3px 6px rgba(#000, 0.16), 0 3px 6px rgba(#000, 0.23);
+  border: 1px solid #3a6ea5;
+  box-shadow: 0 8px 6px -6px black;
 }
 .container {
   display: flex;
@@ -22,8 +22,10 @@
 
 .back {
   background-color: #3a6ea5;
+  border: 1px solid #004e98;
 }
 
 .front {
   background-color: #004e98;
+  border: 1px solid #3a6ea5;
 }

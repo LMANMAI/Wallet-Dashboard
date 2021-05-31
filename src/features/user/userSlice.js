@@ -5,6 +5,7 @@ const initialState = {
   menu: false,
   formulario: false,
   cards: [],
+  modal: false,
 };
 
 const userSlice = createSlice({
@@ -26,6 +27,9 @@ const userSlice = createSlice({
     setCards: (state, action) => {
       state.cards = action.payload;
     },
+    setModal: (state, action) => {
+      state.modal = action.payload;
+    },
   },
 });
 
@@ -35,6 +39,7 @@ export const {
   setMenuPosition,
   setFormPosition,
   setCards,
+  setModal,
 } = userSlice.actions;
 export const selectUserName = (state) => state.user.username;
 export const selectUserPhoto = (state) => state.user.userphoto;
@@ -42,5 +47,6 @@ export const selectUserEmail = (state) => state.user.useremail;
 export const selectMenuState = (state) => state.user.menu;
 export const selectFormState = (state) => state.user.formulario;
 export const selectCardState = (state) => state.user.cards;
+export const selectModalState = (state) => state.user.modal;
 
 export default userSlice.reducer;

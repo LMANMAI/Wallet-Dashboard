@@ -2,35 +2,34 @@ import React, { useRef, useCallback, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import { ModalView, ModalContent, ModalCloseButton } from "../../assets";
 import { GrClose } from "react-icons/gr";
-const Popup = ({ open, onClose, children }) => {
+const Popup = ({ open, setClose, children }) => {
   const modalRef = useRef();
 
   const animation = useSpring({
     config: {
-      duration: 50,
+      duration: 25,
     },
     opacity: open ? 1 : 0,
-    transform: open ? "scale(1)" : "scale(.7)",
-    transition: "all 150ms",
+    transform: open ? "scale(1)" : "scale(.8)",
+    transition: "all 200ms",
   });
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
-      onClose();
+      setClose();
     }
   };
   const keyPress = useCallback(
     (e) => {
       if (e.key === "Escape" && open) {
-        onClose();
+        setClose();
       }
     },
-    [onClose, open]
+    [setClose, open]
   );
   useEffect(() => {
     document.addEventListener("keydown", keyPress);
     return () => document.removeEventListener("keydown", keyPress);
   }, [keyPress]);
-  //if (!open) return null;
   return (
     <>
       {open ? (
@@ -38,7 +37,7 @@ const Popup = ({ open, onClose, children }) => {
           <ModalView ref={modalRef} onClick={(e) => closeModal(e)}>
             <animated.div style={animation}>
               <ModalContent>
-                <ModalCloseButton onClick={() => onClose()}>
+                <ModalCloseButton onClick={() => setClose()}>
                   <GrClose />
                 </ModalCloseButton>
                 {children}

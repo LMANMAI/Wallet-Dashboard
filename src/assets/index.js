@@ -325,9 +325,16 @@ export const CardConteiner = styled.section`
   transition: all 250ms ease-in-out;
   position: relative;
   grid-column: 2 / 3;
-  min-height: 290px;
+  height: 290px;
   display: flex;
   flex-direction: column;
+  @media (max-width: 768px) {
+    border: 1px solid green;
+    width: 95vw;
+    overflow-x: auto;
+    flex-direction: row;
+    padding: 40px 150px;
+  }
   @media (min-width: 768px) {
     width: 100%;
     height: 85vh;
@@ -336,7 +343,6 @@ export const CardConteiner = styled.section`
       ${CardWraper} {
         height: 180px;
         padding-top: 0px;
-        border: 1px solid red;
       }
     }
   }
@@ -474,13 +480,14 @@ export const ModalContent = styled.div`
   border-radius: 15px;
   padding: 15px;
   background-color: white;
+  height: 85vh;
+  overflow: auto;
   h4 {
     text-align: center;
   }
   @media (min-width: 768px) {
     min-width: 40vw;
     width: fit-content;
-    border: 1px solid red;
   }
 `;
 export const ModalCloseButton = styled.button`
@@ -488,7 +495,7 @@ export const ModalCloseButton = styled.button`
   background-color: transparent;
   text-align: end;
   width: 100%;
-
+  cursor: pointer;
   svg {
     font-size: 20px;
     font-weight: bold;
@@ -527,4 +534,29 @@ export const ButtonModal = styled.button`
   border-radius: 15px;
   background-color: #90be6d;
   color: white;
+`;
+export const ModalCardsContainer = styled.div`
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    width: 75vw;
+    flex-direction: row;
+    height: 90%;
+  }
+`;
+export const ModalCardWrapper = styled.div`
+  border: 1px solid green;
+  width: 100%;
+  max-width: 300px;
+`;
+export const ModalCard = styled.div`
+  min-height: 150px;
+
+  border: 1px solid blue;
+  margin: 10px;
+  border-radius: 25px;
+  padding: 10px;
 `;

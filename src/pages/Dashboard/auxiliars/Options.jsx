@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setMenuPosition,
   selectMenuState,
+  selectModalState,
+  setModal,
 } from "../../../features/user/userSlice";
 import {
   AddCards,
@@ -17,18 +19,21 @@ import Popup from "../../../components/popup";
 const Options = () => {
   const dispatch = useDispatch(setMenuPosition);
   const movestate = useSelector(selectMenuState);
+  const modalstate = useSelector(selectModalState);
+  const handleModal = (state) => {
+    dispatch(setModal(state));
+  };
   const handleMenuClose = () => {
     dispatch(setMenuPosition(false));
-    console.log(movestate);
   };
 
-  const [open, setOpen] = useState(false);
-  const [comp, setComp] = useState();
+  //const [open, setOpen] = useState(false);
+  const [component, setComponent] = useState();
 
   const openModal = (comp) => {
-    setOpen(!open);
+    handleModal(true);
     dispatch(setMenuPosition(false));
-    setComp(comp);
+    setComponent(comp);
   };
   return (
     <>
@@ -37,33 +42,28 @@ const Options = () => {
           <CgClose onClick={() => handleMenuClose()} />
         </MenuItem>
 
-        <MenuItem>
+        {/* <MenuItem onClick={() => openModal(<Transactions />)}>
           <CgArrowsExchangeAltV />
+          Transferencias
+        </MenuItem> */}
 
-          <button onClick={() => openModal(<Transactions />)}>
-            Transferencias
-          </button>
-        </MenuItem>
-
-        <MenuItem>
+        <MenuItem onClick={() => openModal(<AddCards />)}>
           <CgCreditCard />
-          <button onClick={() => openModal(<AddCards />)}>
-            Agregar tarjeta
-          </button>
+          Agregar tarjeta
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => openModal(<Money />)}>
           <GiReceiveMoney />
-
-          <button onClick={() => openModal(<Money />)}>Ingresar</button>
+          Ingresar
         </MenuItem>
 
-        <MenuItem>
+        <MenuItem onClick={() => openModal(<MyCards />)}>
           <GiWallet />
-          <button onClick={() => openModal(<MyCards />)}>Mis Tarjetas</button>
+          Mis Tarjetas
         </MenuItem>
       </MenuContainer>
-      <Popup open={open} onClose={() => setOpen(false)}>
-        {comp}
+
+      <Popup open={modalstate} setClose={() => handleModal(false)}>
+        {component}
       </Popup>
     </>
   );

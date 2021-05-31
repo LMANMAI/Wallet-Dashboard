@@ -7,8 +7,9 @@ import {
   ButtonModal,
 } from "../../../../assets";
 import firebase, { FirebaseContext } from "../../../../firebase";
-
-const AddCards = ({ onClose }) => {
+import { setModal } from "../../../../features/user/userSlice";
+import { useDispatch } from "react-redux";
+const AddCards = () => {
   const [cardinfo, setCardInfo] = useState({
     name: "",
     last_name: "",
@@ -18,7 +19,8 @@ const AddCards = ({ onClose }) => {
     cvv: Math.floor(Math.random() * (999 - 100)) + 100,
     number: 4 + (Math.floor(Math.random() * (0 + 1000000000000000)) + 0),
   });
-
+  const dispatch = useDispatch();
+  const setClose = () => dispatch(setModal(false));
   const handleChange = (e) => {
     setCardInfo({
       ...cardinfo,
@@ -33,8 +35,7 @@ const AddCards = ({ onClose }) => {
   }
   async function addCard() {
     firebase.db.collection("cards").add(cardinfo);
-    console.log("Datos de la tarjeta agregada: ", cardinfo);
-    onClose();
+    setClose();
   }
   return (
     <>

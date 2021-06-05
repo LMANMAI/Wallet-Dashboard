@@ -306,18 +306,19 @@ export const CardWraper = styled.div`
   height: 40px;
   display: flex;
   justify-content: center;
+  @media (max-width: 768px) {
+    //  border: 1px solid red;
+    margin: 0px 280px 0 0;
+  }
   @media (min-width: 768px) {
     margin: 10px auto;
     width: 78%;
     height: 50px;
     transition: all 350ms cubic-bezier(0.04, 0.85, 0.98, 0.35);
     &:hover {
-      margin-bottom: 0;
-      transform: translateY(-10px) scale(1.01);
+      transform: translateY(-5px) scale(1.01);
       z-index: 10;
-      &:first-child {
-        transform: translateY(-5px) scale(1.01);
-      }
+      cursor: pointer;
     }
   }
 `;
@@ -341,7 +342,7 @@ export const CardConteiner = styled.section`
     &:hover {
       transition: height 650ms ease-in-out;
       ${CardWraper} {
-        height: 180px;
+        height: 130px;
         padding-top: 0px;
       }
     }
@@ -371,7 +372,7 @@ export const MenuContainer = styled.nav`
   flex-direction: column;
   justify-content: center;
   padding: 0 10px;
-
+  border-right: 5px solid #ff6700;
   @media (min-width: 768px) {
     transform: translateX(0px);
     width: 100%;
@@ -480,7 +481,8 @@ export const ModalContent = styled.div`
   border-radius: 15px;
   padding: 15px;
   background-color: white;
-  height: 85vh;
+  max-height: 85vh;
+  height: fit-content;
   overflow: auto;
   h4 {
     text-align: center;
@@ -505,17 +507,23 @@ export const FormularioModal = styled(Formulario)`
   padding: 0;
   width: 100%;
   box-shadow: none;
+  h4 {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1.2rem;
+  }
 `;
-export const InputContainerModal = styled(InputsContainer)``;
+export const InputContainerModal = styled(InputsContainer)`
+  margin: 0;
+  padding: 0;
+`;
 export const InputModal = styled(Input)`
   border-radius: 15px;
   padding: 10px;
   padding-left: 20px;
   margin: 8px 0;
   background-color: #e0e0e0;
-  &::placeholder {
-    color: black;
-  }
+  width: 75%;
 `;
 export const Icon = styled.div`
   width: 75px;
@@ -526,13 +534,16 @@ export const Icon = styled.div`
 `;
 export const ButtonModal = styled.button`
   border: none;
+  outline: none;
+  width: 180px;
+  justify-content: center;
   cursor: pointer;
   padding: 15px;
   outline: none;
-  margin: 0 auto;
+  margin: 8px auto;
   display: flex;
   border-radius: 15px;
-  background-color: #90be6d;
+  background-color: ${AzulO};
   color: white;
 `;
 export const ModalCardsContainer = styled.div`
@@ -554,9 +565,51 @@ export const ModalCardWrapper = styled.div`
 `;
 export const ModalCard = styled.div`
   min-height: 150px;
-
   border: 1px solid blue;
   margin: 10px;
   border-radius: 25px;
   padding: 10px;
+`;
+export const RadioContainer = styled.div`
+  display: flex;
+  height: 60px;
+  width: fit-content;
+  margin: 0 auto;
+  width: 120px;
+  justify-content: center;
+`;
+export const Radio = styled.div`
+  display: flex;
+  width: 34px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 8px;
+  svg {
+    font-size: 2.5rem;
+    color: ${Naranja};
+  }
+`;
+export const SaldoConteiner = styled.div`
+  background-color: ${AzulC};
+  padding: 10px;
+  border-radius: 15px;
+  width: 100%;
+  min-height: 50px;
+  height: 15vh;
+  margin: 10px auto;
+  max-width: 300px;
+  display: grid;
+  place-items: center;
+  span,
+  p {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  p {
+    text-align: center;
+    font-weight: 300;
+    font-size: 1rem;
+  }
 `;

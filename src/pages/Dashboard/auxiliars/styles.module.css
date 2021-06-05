@@ -1,7 +1,6 @@
 .c {
   position: absolute;
-  max-width: 350px;
-  width: 78%;
+  width: 350px;
   height: 200px;
   cursor: pointer;
   border-radius: 35px;

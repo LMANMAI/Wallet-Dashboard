@@ -3,12 +3,14 @@ import {
   FormularioModal,
   InputContainerModal,
   InputModal,
-  Icon,
   ButtonModal,
+  RadioContainer,
+  Radio,
 } from "../../../../assets";
 import firebase, { FirebaseContext } from "../../../../firebase";
 import { setModal } from "../../../../features/user/userSlice";
 import { useDispatch } from "react-redux";
+import { FaCcVisa, FaCcMastercard } from "react-icons/fa";
 const AddCards = () => {
   const [cardinfo, setCardInfo] = useState({
     name: "",
@@ -27,23 +29,20 @@ const AddCards = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const { name, last_name, card_type, salary } = cardinfo;
+  const { name, last_name, salary } = cardinfo;
   const { user } = useContext(FirebaseContext);
 
   if (user) {
     cardinfo.user_email = user.email;
   }
   async function addCard() {
-    firebase.db.collection("cards").add(cardinfo);
+    await firebase.db.collection("cards").add(cardinfo);
     setClose();
   }
   return (
     <>
       <FormularioModal>
-        <Icon>
-          <img src="/assets/debit-card.png" alt="card-icon" />
-        </Icon>
-        <h4>Datos para solicitar la tarjeta</h4>
+        <h4>Agregar tarjeta</h4>
         <InputContainerModal>
           <InputModal
             type="text"
@@ -59,16 +58,7 @@ const AddCards = () => {
             name="last_name"
             onChange={handleChange}
           />
-          <div>
-            <label>Seleccione un tipo de tarjeta</label>
-            <select name="card_type" value={card_type} onChange={handleChange}>
-              <option value="-" selected>
-                Tipo de tarjeta
-              </option>
-              <option value="VISA">Visa</option>
-              <option value="MASTERCARD">Mastercard</option>
-            </select>
-          </div>
+
           <InputModal
             type="number"
             placeholder="Ingresos Mensuales"
@@ -77,8 +67,28 @@ const AddCards = () => {
             onChange={handleChange}
           />
         </InputContainerModal>
+        <RadioContainer>
+          <Radio>
+            <input
+              onChange={handleChange}
+              type="radio"
+              value="VISA"
+              name="card_type"
+            />
+            <FaCcVisa />
+          </Radio>
+          <Radio>
+            <input
+              onChange={handleChange}
+              type="radio"
+              value="MASTERCARD"
+              name="card_type"
+            />
+            <FaCcMastercard />
+          </Radio>
+        </RadioContainer>
       </FormularioModal>
-      <ButtonModal onClick={addCard}>Solicitar</ButtonModal>
+      <ButtonModal onClick={addCard}>Guardar</ButtonModal>
     </>
   );
 };

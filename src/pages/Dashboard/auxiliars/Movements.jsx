@@ -1,9 +1,21 @@
 import React from "react";
-import { MovementsSection, Section } from "../../../assets";
+import { MovementsSection, Section, SaldoConteiner } from "../../../assets";
+import { selectAccountState } from "../../../features/user/userSlice";
+import { useSelector } from "react-redux";
 import Move from "./Move";
+
 const Movements = () => {
+  const saldo = useSelector(selectAccountState);
+
   return (
     <MovementsSection>
+      <SaldoConteiner>
+        {saldo ? (
+          <span>$ {saldo.count}</span>
+        ) : (
+          <p>Todavia no ingresaste dinero</p>
+        )}
+      </SaldoConteiner>
       <Section>
         <p>Transaction</p>
         <p>See all</p>

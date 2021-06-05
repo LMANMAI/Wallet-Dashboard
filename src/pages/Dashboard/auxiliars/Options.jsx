@@ -55,7 +55,6 @@ const Options = () => {
           <GiReceiveMoney />
           Ingresar
         </MenuItem>
-
         <MenuItem onClick={() => openModal(<MyCards />)}>
           <GiWallet />
           Mis Tarjetas

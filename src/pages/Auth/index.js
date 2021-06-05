@@ -12,25 +12,13 @@ const LoginPage = () => {
 
   const handleSignInPopUp = () => {
     auth.signInWithPopup(provider).then((result) => {
-      dispatch(
-        setActiveUser({
-          username: result.user.displayName,
-          email: result.user.email,
-          userphoto: result.user.photoURL,
-        })
-      );
+      dispatch(setActiveUser({ result }));
     });
   };
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        dispatch(
-          setActiveUser({
-            username: user.displayName,
-            email: user.email,
-            userphoto: user.photoURL,
-          })
-        );
+        dispatch(setActiveUser(user));
         history.push("/Dashboard");
       }
     });

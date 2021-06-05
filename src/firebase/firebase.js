@@ -36,9 +36,6 @@ class Firebase {
   async logout() {
     await this.auth.signOut();
   }
-  //crear colleccion en firebase
-  //Acceder a la base de datos de firebase
-  //traer los datos de firebase
 }
 const firebaseE = new Firebase();
 export { auth, provider, storage, db };

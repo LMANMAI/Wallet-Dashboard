@@ -40,14 +40,13 @@ const Login = ({ handleSignInPopUp }) => {
 
   async function loginUSer(e) {
     try {
-      await firebase.login(email, password);
+      await firebase.auth.signInWithEmailAndPassword(email, password);
       history.push("/Dashboard");
     } catch (error) {
       //console.error(error.message);
     }
   }
   const formulariomove = useSelector(selectFormState);
-
   return (
     <LoginContainer
       formulariomove={formulariomove}

@@ -7,32 +7,65 @@ import {
   Main,
   Container,
 } from "../../assets";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FirebaseContext } from "../../firebase";
-import { setCards } from "../../features/user/userSlice";
-const DashboardPage = () => {
-  const { firebase, user } = useContext(FirebaseContext);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const handleCards = () => {
-      firebase.db.collection("cards").onSnapshot(handdleSnapshot);
-    };
-    handleCards();
-  });
+import {
+  setCards,
+  setActiveUser,
+  setAccount,
+  selectUser,
+} from "../../features/user/userSlice";
+import { useHistory } from "react-router-dom";
 
-  function handdleSnapshot(snapshot) {
-    const cards = snapshot.docs.map((doc) => {
-      return {
-        id: doc.id,
-        ...doc.data(),
-      };
+const DashboardPage = () => {
+  const { firebase } = useContext(FirebaseContext);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector(selectUser);
+  useEffect(() => {
+    firebase.auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(setActiveUser(user));
+        const handleCards = () => {
+          firebase.db.collection("cards").onSnapshot(handdleSnapshot);
+        };
+
+        const handleAccount = () => {
+          firebase.db.collection("account").onSnapshot(handleSnapshotAccount);
+        };
+        handleCards();
+        handleAccount();
+      } else {
+        history.push("/");
+      }
     });
-    if (user) {
+
+    const handdleSnapshot = async (snapshot) => {
+      const cards = await snapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
       dispatch(
         setCards(cards.filter((card) => card.user_email === user.email))
       );
-    }
-  }
+    };
+    const handleSnapshotAccount = async (snapshot) => {
+      const accounts = await snapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      dispatch(
+        setAccount(
+          accounts.filter((account) => account.user_email === user.email)
+        )
+      );
+    };
+  });
+
   return (
     <Main>
       <Container>

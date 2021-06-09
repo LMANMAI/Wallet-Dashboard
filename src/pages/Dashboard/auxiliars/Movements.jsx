@@ -11,7 +11,7 @@ const Movements = () => {
     <MovementsSection>
       <SaldoConteiner>
         {saldo ? (
-          <span>$ {saldo.count}</span>
+          <span>$ {saldo.value_account}</span>
         ) : (
           <p>Todavia no ingresaste dinero</p>
         )}

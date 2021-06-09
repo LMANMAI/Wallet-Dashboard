@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MenuContainer, MenuItem } from "../../../assets";
-import { CgArrowsExchangeAltV, CgCreditCard, CgClose } from "react-icons/cg";
-import { GiReceiveMoney, GiWallet } from "react-icons/gi";
+import { CgCreditCard, CgClose } from "react-icons/cg";
+import { GiReceiveMoney, GiWallet, GiTwoCoins } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setMenuPosition,
@@ -54,6 +54,10 @@ const Options = () => {
         <MenuItem onClick={() => openModal(<Money />)}>
           <GiReceiveMoney />
           Ingresar
+        </MenuItem>
+        <MenuItem onClick={() => openModal(<Money />)}>
+          <GiTwoCoins />
+          Agregar Gasto
         </MenuItem>
         <MenuItem onClick={() => openModal(<MyCards />)}>
           <GiWallet />

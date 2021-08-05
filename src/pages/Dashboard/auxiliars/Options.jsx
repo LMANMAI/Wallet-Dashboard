@@ -9,12 +9,7 @@ import {
   selectModalState,
   setModal,
 } from "../../../features/user/userSlice";
-import {
-  AddCards,
-  MyCards,
-  Money,
-  Transactions,
-} from "../auxiliars/ModalOptions";
+import { AddCards, MyCards, Money, Payments } from "../auxiliars/ModalOptions";
 import Popup from "../../../components/popup";
 const Options = () => {
   const dispatch = useDispatch(setMenuPosition);
@@ -55,7 +50,7 @@ const Options = () => {
           <GiReceiveMoney />
           Ingresar
         </MenuItem>
-        <MenuItem onClick={() => openModal(<Money />)}>
+        <MenuItem onClick={() => openModal(<Payments />)}>
           <GiTwoCoins />
           Agregar Gasto
         </MenuItem>

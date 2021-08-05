@@ -7,6 +7,7 @@ const initialState = {
   cards: [],
   modal: false,
   account: "",
+  moves: [],
 };
 
 const userSlice = createSlice({
@@ -34,6 +35,9 @@ const userSlice = createSlice({
     setAccount: (state, action) => {
       state.account = action.payload[0];
     },
+    setArrayMovements: (state, action) => {
+      state.moves = [...state.moves, action.payload];
+    },
   },
 });
 
@@ -45,6 +49,7 @@ export const {
   setCards,
   setModal,
   setAccount,
+  setArrayMovements,
 } = userSlice.actions;
 export const selectUser = (state) => state.user.user;
 export const selectMenuState = (state) => state.user.menu;
@@ -52,5 +57,6 @@ export const selectFormState = (state) => state.user.formulario;
 export const selectCardState = (state) => state.user.cards;
 export const selectModalState = (state) => state.user.modal;
 export const selectAccountState = (state) => state.user.account;
+export const selectMovements = (state) => state.user.moves;
 
 export default userSlice.reducer;

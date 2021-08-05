@@ -301,6 +301,7 @@ export const UserContainer = styled.div`
 /**Seccion Main de las tarjetas */
 
 export const CardWraper = styled.div`
+  border: 1px solid red;
   transition: all 550ms ease-in-out;
   width: 100%;
   height: 40px;
@@ -323,6 +324,7 @@ export const CardWraper = styled.div`
   }
 `;
 export const CardConteiner = styled.section`
+  border: 1px solid blue;
   transition: all 250ms ease-in-out;
   position: relative;
   grid-column: 2 / 3;
@@ -353,8 +355,12 @@ export const FrontCard = styled.div`
   width: 100%;
   height: 100%;
   padding: 10px;
+  background-color: red;
 `;
-export const BackCard = styled(FrontCard)``;
+export const BackCard = styled(FrontCard)`
+  background-color: crimson;
+  width: 100%;
+`;
 
 /**Menu de Opciones  */
 export const MenuContainer = styled.nav`
@@ -448,9 +454,12 @@ export const MovementsSection = styled.section`
 `;
 export const Section = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 5px 15px;
   margin-bottom: 5px;
+  button {
+    margin: 0 5px;
+  }
 `;
 export const Movement = styled.div`
   display: grid;

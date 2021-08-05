@@ -33,6 +33,7 @@ const DashboardPage = () => {
         const handleAccount = () => {
           firebase.db.collection("account").onSnapshot(handleSnapshotAccount);
         };
+
         handleCards();
         handleAccount();
       } else {

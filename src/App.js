@@ -1,19 +1,13 @@
 import React from "react";
 import Routes from "./routes";
 import "./assets/reset.css";
-import firebase, { FirebaseContext } from "./firebase";
-import userAuth from "./hooks/useAuth";
+import { Provider } from "react-redux";
+import store from "./app/store";
 function App() {
-  const user = userAuth();
   return (
-    <FirebaseContext.Provider
-      value={{
-        firebase,
-        user,
-      }}
-    >
+    <Provider store={store}>
       <Routes />
-    </FirebaseContext.Provider>
+    </Provider>
   );
 }
 

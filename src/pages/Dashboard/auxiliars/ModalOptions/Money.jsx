@@ -5,7 +5,7 @@ import {
   ButtonModal,
 } from "../../../../assets";
 import { useSelector, useDispatch } from "react-redux";
-import firebase from "../../../../firebase";
+import firebase from "../../../../firebase/firebase";
 import {
   setModal,
   setArrayMovements,

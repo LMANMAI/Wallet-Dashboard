@@ -13,10 +13,9 @@ import { TiThMenu } from "react-icons/ti";
 import Menu from "./Menu";
 import { setMenuPosition } from "../../../features/user/userSlice";
 import { useDispatch } from "react-redux";
-import { FirebaseContext } from "../../../firebase";
 const HeaderSection = () => {
   const [menu, setMenu] = useState(false);
-  const { user } = useContext(FirebaseContext);
+  const user = "Lucas";
 
   const dispatch = useDispatch();
   const handlePopUp = () => {
@@ -26,9 +25,9 @@ const HeaderSection = () => {
     dispatch(setMenuPosition(true));
   };
   let firstLetter;
-  if (user) {
-    firstLetter = user.displayName.charAt(0);
-  }
+  // if (user) {
+  //   firstLetter = user.displayName.charAt(0);
+  // }
   return (
     <HeaderContent>
       {user ? (

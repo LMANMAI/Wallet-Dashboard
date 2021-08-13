@@ -18,7 +18,7 @@ import {
   setFormPosition,
 } from "../../../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import firebase from "../../../firebase";
+import firebase from "../../../firebase/firebase";
 import { useHistory } from "react-router-dom";
 import useValidation from "../../../hooks/useValidation";
 import validateLoginAccount from "../../../hooks/validation/ validateLoginAccount";

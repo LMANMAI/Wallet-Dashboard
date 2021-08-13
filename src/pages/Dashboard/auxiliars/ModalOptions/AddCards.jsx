@@ -7,7 +7,7 @@ import {
   RadioContainer,
   Radio,
 } from "../../../../assets";
-import firebase, { FirebaseContext } from "../../../../firebase";
+import firebase from "../../../../firebase/firebase";
 import { setModal } from "../../../../features/user/userSlice";
 import { useDispatch } from "react-redux";
 import { FaCcVisa, FaCcMastercard } from "react-icons/fa";

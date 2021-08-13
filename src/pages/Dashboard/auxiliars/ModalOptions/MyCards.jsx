@@ -5,7 +5,7 @@ import {
   ModalCard,
 } from "../../../../assets";
 import { useSelector } from "react-redux";
-import firebase from "../../../../firebase";
+import firebase from "../../../../firebase/firebase";
 import { selectCardState } from "../../../../features/user/userSlice";
 const MyCards = () => {
   const cards = useSelector(selectCardState);

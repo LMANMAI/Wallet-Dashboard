@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { MenuWrapper } from "../../../assets";
-import { FirebaseContext } from "../../../firebase";
+import firebase from "../../../firebase/firebase";
 import { useHistory } from "react-router-dom";
 const Menu = () => {
   const history = useHistory();

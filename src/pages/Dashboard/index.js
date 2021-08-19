@@ -6,6 +6,7 @@ import {
   Movements,
   Main,
   Container,
+  MediumContainer,
 } from "../../assets";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -67,8 +68,10 @@ const DashboardPage = () => {
       <Container>
         <HeaderSection />
         <Options />
-        <CardSection />
-        <Movements />
+        <MediumContainer>
+          <CardSection />
+          <Movements />
+        </MediumContainer>
       </Container>
     </Main>
   );

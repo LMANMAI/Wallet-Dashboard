@@ -171,7 +171,7 @@ export const Button = styled.button`
     align-items: center;
     justify-content: center;
     color: black;
-    border: 1px solid ${GrisO};
+    /* border: 1px solid ${GrisO}; */
     svg {
       font-size: 1rem;
       margin-right: 5px;
@@ -190,7 +190,7 @@ export const Container = styled.div`
   //height: 100vh;
   @media (min-width: 768px) {
     display: grid;
-    grid-template: auto 1fr / 200px 1fr 1fr;
+    grid-template: auto 1fr / 200px 1fr;
   }
 `;
 /**seccion del header */
@@ -301,17 +301,28 @@ export const UserContainer = styled.div`
 /**Seccion Main de las tarjetas */
 
 export const CardWraper = styled.div`
-  border: 1px solid red;
   transition: all 550ms ease-in-out;
   width: 100%;
-  height: 40px;
+  height: 70%;
   display: flex;
   justify-content: center;
-  @media (max-width: 768px) {
-    //  border: 1px solid red;
-    margin: 0px 280px 0 0;
-  }
+  border-radius: 25px;
+  flex: none;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    75deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(58, 110, 160, 1) 0%,
+    rgba(102, 163, 221, 1) 100%
+  );
   @media (min-width: 768px) {
+    height: 35%;
+    min-width: 60%;
+    max-width: 350px;
+    flex: none;
+    // margin: 0px 280px 0 0;
+  }
+  /* @media (min-width: 768px) {
     margin: 10px auto;
     width: 78%;
     height: 50px;
@@ -321,45 +332,43 @@ export const CardWraper = styled.div`
       z-index: 10;
       cursor: pointer;
     }
-  }
+  } */
 `;
 export const CardConteiner = styled.section`
-  border: 1px solid blue;
   transition: all 250ms ease-in-out;
-  position: relative;
   grid-column: 2 / 3;
   height: 290px;
   display: flex;
   flex-direction: column;
+  overflow-x: auto;
+  max-width: 100vw;
+  align-items: center;
+  align-self: center;
+  padding: 7px;
+  gap: 10px;
   @media (max-width: 768px) {
     border: 1px solid green;
-    width: 95vw;
-    overflow-x: auto;
+    width: 95%;
     flex-direction: row;
-    padding: 40px 150px;
+    padding: 10px;
   }
   @media (min-width: 768px) {
     width: 100%;
     height: 85vh;
     &:hover {
       transition: height 650ms ease-in-out;
-      ${CardWraper} {
-        height: 130px;
-        padding-top: 0px;
-      }
     }
   }
 `;
 
 export const FrontCard = styled.div`
   width: 100%;
-  height: 100%;
-  padding: 10px;
-  background-color: red;
-`;
-export const BackCard = styled(FrontCard)`
-  background-color: crimson;
-  width: 100%;
+  height: 70%;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 26px 26px 95px;
 `;
 
 /**Menu de Opciones  */
@@ -387,7 +396,7 @@ export const MenuContainer = styled.nav`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-right: 1px solid #bdbdbd;
+    border-right: none;
     margin-right: 5px;
     svg {
       visibility: hidden;
@@ -440,17 +449,28 @@ export const MenuItem = styled.div`
     }
   }
 `;
-
+export const MediumContainer = styled.main`
+  background-color: #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  border-radius: 15px;
+  margin: 1.325rem auto;
+  height: 85vh;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    margin: 0.725rem 5px;
+  }
+`;
 /**Transactions */
 export const MovementsSection = styled.section`
   min-height: 40vh;
   width: 96%;
   margin: 10px auto;
   padding: 10px;
-  background-color: #f3f3f3;
-  grid-column: 3 / 4;
-  border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /*  
+  grid-column: 3 / 4; */
 `;
 export const Section = styled.div`
   display: flex;
@@ -556,7 +576,7 @@ export const ButtonModal = styled.button`
   color: white;
 `;
 export const ModalCardsContainer = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -568,13 +588,13 @@ export const ModalCardsContainer = styled.div`
   }
 `;
 export const ModalCardWrapper = styled.div`
-  border: 1px solid green;
+  /* border: 1px solid green; */
   width: 100%;
   max-width: 300px;
 `;
 export const ModalCard = styled.div`
   min-height: 150px;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   margin: 10px;
   border-radius: 25px;
   padding: 10px;

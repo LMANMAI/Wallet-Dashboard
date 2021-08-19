@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { CardWraper, FrontCard, BackCard } from "../../../assets";
+import { CardWraper, FrontCard } from "../../../assets";
 const Card = ({ cardinfo }) => {
   return (
     <CardWraper>
-      <BackCard>
-        <p>{cardinfo.cvv}</p>
-      </BackCard>
-
       <FrontCard>
         <p>{cardinfo.name}</p>
         <p>{cardinfo.last_name}</p>

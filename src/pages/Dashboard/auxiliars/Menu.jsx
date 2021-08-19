@@ -4,9 +4,8 @@ import firebase from "../../../firebase/firebase";
 import { useHistory } from "react-router-dom";
 const Menu = () => {
   const history = useHistory();
-  const { firebase } = useContext(FirebaseContext);
   const handleSignOut = () => {
-    firebase.logout();
+    // firebase.logout();
     history.push("/");
   };
   return (

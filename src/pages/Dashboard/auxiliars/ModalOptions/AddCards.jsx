@@ -30,8 +30,8 @@ const AddCards = () => {
     });
   };
   const { name, last_name, salary } = cardinfo;
-  const { user } = useContext(FirebaseContext);
-
+  // const { user } = useContext(FirebaseContext);
+  const user = "Lucas";
   if (user) {
     cardinfo.user_email = user.email;
   }

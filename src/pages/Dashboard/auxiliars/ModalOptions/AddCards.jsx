@@ -61,7 +61,7 @@ const AddCards = () => {
 
           <InputModal
             type="number"
-            placeholder="Ingresos Mensuales"
+            placeholder="Limite Mensual"
             value={salary}
             name="salary"
             onChange={handleChange}

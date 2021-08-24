@@ -132,3 +132,9 @@ table {
 * {
   box-sizing: border-box;
 }
+h4 {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 1.2rem;
+  text-align: center;
+}

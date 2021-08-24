@@ -258,11 +258,11 @@ export const MenuWrapper = styled.div`
   height: fit-content;
   background-color: ${GrisO};
   position: absolute;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   padding: 10px;
-  bottom: -110px;
+  bottom: -109px;
   z-index: 99;
-  right: -1px;
+  right: 10px;
   box-shadow: 0 10px 6px -6px #777;
   li {
     padding: 5px;
@@ -346,8 +346,15 @@ export const CardConteiner = styled.section`
   align-self: center;
   padding: 7px;
   gap: 10px;
+  &::-webkit-scrollbar {
+    width: 9px;
+    height: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${Naranja};
+    border-radius: 10px;
+  }
   @media (max-width: 768px) {
-    border: 1px solid green;
     width: 95%;
     flex-direction: row;
     padding: 10px;
@@ -366,8 +373,8 @@ export const FrontCard = styled.div`
   height: 70%;
   padding: 15px;
   background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  // backdrop-filter: blur(4px);
+  //-webkit-backdrop-filter: blur(4px);
   border-radius: 26px 26px 95px;
 `;
 
@@ -456,7 +463,8 @@ export const MediumContainer = styled.main`
   /* border: 1px solid red; */
   border-radius: 15px;
   margin: 1.325rem auto;
-  height: 85vh;
+  min-height: 95vh;
+  height: fit-content;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   @media (min-width: 768px) {
     flex-direction: row;
@@ -488,6 +496,59 @@ export const Movement = styled.div`
   margin: 5px 0;
   min-height: 70px;
   align-items: center;
+`;
+export const SectionButton = styled.button`
+  border: 1px solid ${AzulO};
+  outline: none;
+  padding: 10px;
+  border-radius: 25px;
+  color: ${AzulO};
+  &:hover {
+    cursor: pointer;
+    background-color: ${AzulC};
+    color: white;
+  }
+`;
+export const MovementType = styled.div`
+  border: 1px solid ${AzulC};
+  height: 100%;
+  width: 85%;
+  border-radius: 25px;
+  position: relative;
+  display: grid;
+  svg {
+    color: white;
+    align-self: center;
+    justify-self: center;
+    z-index: 2;
+    font-size: 1.725rem;
+  }
+  &:before {
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 0;
+    content: "";
+    width: 80%;
+    height: 80%;
+    border-radius: 15px;
+    background-color: ${AzulO};
+    position: absolute;
+  }
+`;
+export const MovementName = styled.div`
+  padding: 5px 0 5px 8px;
+  width: 80%;
+  p {
+    font-size: 1.125rem;
+  }
+`;
+export const MovementTotal = styled.div`
+  // border: 1px solid blue;
+  padding: 7px;
 `;
 
 export const ModalView = styled.div`
@@ -536,11 +597,7 @@ export const FormularioModal = styled(Formulario)`
   padding: 0;
   width: 100%;
   box-shadow: none;
-  h4 {
-    text-transform: uppercase;
-    font-weight: 300;
-    font-size: 1.2rem;
-  }
+  margin: 0 auto;
 `;
 export const InputContainerModal = styled(InputsContainer)`
   margin: 0;
@@ -552,7 +609,7 @@ export const InputModal = styled(Input)`
   padding-left: 20px;
   margin: 8px 0;
   background-color: #e0e0e0;
-  width: 75%;
+  width: 55%;
 `;
 export const Icon = styled.div`
   width: 75px;
@@ -642,3 +699,12 @@ export const SaldoConteiner = styled.div`
     font-size: 1rem;
   }
 `;
+export const SelectModal = styled.select`
+  padding: 9px;
+  border-radius: 15px;
+  margin: 5px 0;
+  width: 55%;
+  border: 1px solid ${AzulO};
+  outline: none;
+`;
+export const OptionModal = styled.option``;

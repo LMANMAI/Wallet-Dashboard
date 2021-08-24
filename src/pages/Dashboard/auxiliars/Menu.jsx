@@ -11,9 +11,9 @@ const Menu = () => {
   return (
     <MenuWrapper>
       <ul>
-        <li>Profile</li>
-        <li>Settings</li>
-        <li onClick={handleSignOut}>Sign Out</li>
+        <li>Perfil</li>
+        <li>Configuracion</li>
+        <li onClick={handleSignOut}>Cerrar Sesion</li>
       </ul>
     </MenuWrapper>
   );

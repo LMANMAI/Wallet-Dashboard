@@ -73,7 +73,16 @@ const Money = () => {
   };
   return (
     <div>
-      INGRESO DEL DINERO
+      <h4>Ingresar saldo</h4>
+      <InputContainerModal>
+        <InputModal
+          type="text"
+          placeholder="Ej: Transporte"
+          name="value_account"
+          value={value_account}
+          onChange={(e) => handleChange(e)}
+        />
+      </InputContainerModal>
       <InputContainerModal>
         <InputModal
           type="number"

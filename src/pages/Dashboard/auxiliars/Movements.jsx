@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { MovementsSection, Section, SaldoConteiner } from "../../../assets";
+import {
+  MovementsSection,
+  Section,
+  SaldoConteiner,
+  SectionButton,
+} from "../../../assets";
 import {
   selectAccountState,
   selectMovements,
@@ -34,8 +39,8 @@ const Movements = () => {
         )}
       </SaldoConteiner>
       <Section>
-        <button onClick={() => handleIn()}>Ingresos </button>
-        <button onClick={() => handleOut()}>Gastos </button>
+        <SectionButton onClick={() => handleIn()}>Ingresos </SectionButton>
+        <SectionButton onClick={() => handleOut()}>Gastos </SectionButton>
       </Section>
 
       {React.Children.toArray(moves.map((item) => <Move data={item} />))}

@@ -1,12 +1,28 @@
 import React from "react";
-import { Movement } from "../../../assets";
+import {
+  Movement,
+  MovementType,
+  MovementName,
+  MovementTotal,
+} from "../../../assets";
+import { FaShoppingCart } from "react-icons/fa";
 const Move = (data) => {
   return (
-    <Movement>
-      <p>{data.type}</p>
-      <p>{data.name}</p>
-      <p>${data.total}</p>
-    </Movement>
+    <>
+      <Movement>
+        <MovementType>
+          <FaShoppingCart />
+        </MovementType>
+        <MovementName>
+          <p>{data.name}</p>
+        </MovementName>
+
+        <MovementTotal>
+          <p>${data.total}100</p>
+        </MovementTotal>
+      </Movement>
+      <hr />
+    </>
   );
 };
 

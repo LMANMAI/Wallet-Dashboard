@@ -13,10 +13,10 @@ const Payments = () => {
       <InputContainerModal>
         <SelectModal name="" id="">
           <OptionModal value="">Seleccione una opcion</OptionModal>
-          <OptionModal value="">Compra</OptionModal>
-          <OptionModal value="">Transporte</OptionModal>
-          <OptionModal value="">Servicio</OptionModal>
-          <OptionModal value="">Comida</OptionModal>
+          <OptionModal value="compra">Compra</OptionModal>
+          <OptionModal value="transporte">Transporte</OptionModal>
+          <OptionModal value="servicio">Servicio</OptionModal>
+          <OptionModal value="comida">Comida</OptionModal>
         </SelectModal>
       </InputContainerModal>
       <InputContainerModal>

@@ -10,24 +10,25 @@ const LoginPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSignInPopUp = () => {
+  const handleInPopUp = () => {
     auth.signInWithPopup(provider).then((result) => {
       dispatch(setActiveUser({ result }));
     });
   };
+
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         dispatch(setActiveUser(user));
-        history.push("/Dashboard");
+        // history.push("/Dashboard");
       }
     });
   }, []);
   return (
     <AuthContainer>
       <Formulario>
-        <Login handleSignInPopUp={handleSignInPopUp} />
-        <Register handleSignInPopUp={handleSignInPopUp} />
+        <Login popup={handleInPopUp} />
+        <Register popup={handleInPopUp} />
       </Formulario>
     </AuthContainer>
   );

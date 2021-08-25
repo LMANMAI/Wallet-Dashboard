@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   InputsContainer,
   InputContent,
@@ -18,37 +18,46 @@ import {
   setFormPosition,
 } from "../../../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import firebase from "../../../firebase/firebase";
 import { useHistory } from "react-router-dom";
 import useValidation from "../../../hooks/useValidation";
 import validateCreateAccount from "../../../hooks/validation/validateCreateAccount";
+import { auth } from "../../../firebase/firebase";
 const INITIAL_STATE = {
   name: "",
   email: "",
   password: "",
 };
-const Register = ({ handleSignInPopUp }) => {
+const Register = ({ popup }) => {
+  //validacion
   const { values, errors, handleChangeH, handleSubmitH, handleBlurH } =
-    useValidation(INITIAL_STATE, validateCreateAccount, handleRegister);
+    useValidation(INITIAL_STATE, validateCreateAccount, register);
   const { name, email, password } = values;
-
+  //hoks
   const dispatch = useDispatch();
   const history = useHistory();
+  //refs
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const handleMenu = (e) => {
     e.preventDefault();
     dispatch(setFormPosition(true));
   };
-
-  async function handleRegister(e) {
-    try {
-      await firebase.register(name, email, password);
-      history.push("/Dashboard");
-    } catch (error) {
-      //guardo el posible error de validacion para mostrarlo por pantalla
-      //console.error(error.message);
-    }
+  async function register(e) {
+    auth
+      .createUserWithEmailAndPassword(
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+      .then((authuser) => {
+        console.log(authuser);
+        history.push("/Dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
+
   const formulariomove = useSelector(selectFormState);
   return (
     <SignContainer
@@ -90,6 +99,7 @@ const Register = ({ handleSignInPopUp }) => {
             placeholder="Email"
             name="email"
             value={email}
+            ref={emailRef}
             onChange={handleChangeH}
             onBlur={handleBlurH}
           />
@@ -105,6 +115,7 @@ const Register = ({ handleSignInPopUp }) => {
             type="password"
             placeholder="Password"
             name="password"
+            ref={passwordRef}
             value={password}
             onChange={handleChangeH}
             onBlur={handleBlurH}
@@ -115,9 +126,9 @@ const Register = ({ handleSignInPopUp }) => {
           <button onClick={(e) => handleMenu(e)}>Login now </button>
         </MessageContainer>
         <ButtonContainer>
-          <Button onClick={(e) => handleRegister(e)}>Registrar</Button>
+          <Button onClick={(e) => register(e)}>Registrar</Button>
           <a>
-            <Button onClick={handleSignInPopUp} type="button">
+            <Button onClick={() => popup()} type="button">
               <FcGoogle />
               Continuar con Google
             </Button>

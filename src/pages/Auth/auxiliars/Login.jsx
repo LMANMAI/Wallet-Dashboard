@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   InputsContainer,
   InputContent,
@@ -18,7 +18,7 @@ import {
   setFormPosition,
 } from "../../../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import firebase from "../../../firebase/firebase";
+import { auth } from "../../../firebase/firebase";
 import { useHistory } from "react-router-dom";
 import useValidation from "../../../hooks/useValidation";
 import validateLoginAccount from "../../../hooks/validation/ validateLoginAccount";
@@ -26,25 +26,35 @@ const INITIAL_STATE = {
   email: "",
   password: "",
 };
-const Login = ({ handleSignInPopUp }) => {
+const Login = ({ popup, fn }) => {
+  //validacion para el formulario
   const { values, errors, handleChangeH, handleSubmitH, handleBlurH } =
     useValidation(INITIAL_STATE, validateLoginAccount, loginUSer);
   const { email, password } = values;
 
+  //hooks
   const dispatch = useDispatch();
   const history = useHistory();
+
+  //useRef
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
   const handleMenu = (e) => {
     e.preventDefault();
     dispatch(setFormPosition(false));
   };
 
   async function loginUSer(e) {
-    try {
-      await firebase.auth.signInWithEmailAndPassword(email, password);
-      history.push("/Dashboard");
-    } catch (error) {
-      //console.error(error.message);
-    }
+    auth
+      .signInWithEmailAndPassword(
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+      .then((authuser) => {
+        console.log(authuser);
+        history.push("/Dashboard");
+      })
+      .catch((error) => console.log(error));
   }
   const formulariomove = useSelector(selectFormState);
   return (
@@ -68,6 +78,7 @@ const Login = ({ handleSignInPopUp }) => {
             placeholder="Email"
             name="email"
             value={email}
+            ref={emailRef}
             onChange={handleChangeH}
             onBlur={handleBlurH}
           />
@@ -84,6 +95,7 @@ const Login = ({ handleSignInPopUp }) => {
             placeholder="Password"
             name="password"
             value={password}
+            ref={passwordRef}
             onChange={handleChangeH}
             onBlur={handleBlurH}
           />
@@ -95,7 +107,7 @@ const Login = ({ handleSignInPopUp }) => {
         <ButtonContainer>
           <Button onClick={(e) => loginUSer(e)}>Entrar</Button>
           <a>
-            <Button onClick={() => handleSignInPopUp()} type="button">
+            <Button onClick={() => popup()} type="button">
               <FcGoogle />
               Continuar con Google
             </Button>
